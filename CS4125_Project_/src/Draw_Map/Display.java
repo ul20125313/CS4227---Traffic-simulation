@@ -1,8 +1,12 @@
 package Draw_Map;
 
 import javax.swing.*;
+
+import Command.RemoteControl;
+
 import java.awt.*;
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
@@ -30,6 +34,7 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 		return canvas;
 	}
 	
+
 	public void createDisplay() {
 		
 		
@@ -39,13 +44,26 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         frame.setLocationRelativeTo(null);// set the default location of our window
         frame.setMinimumSize(new Dimension(this.map_wi, this.map_he));
         frame.setLocation(0, 0);
+        frame.setSize(1500,1000);
+        ButtonCreate b = new ButtonCreate(frame);
+        b.addButton();
+
+
+        
         canvas = new Canvas();//it looks like a curtain and inside the frame
         canvas.setSize(1000 , 606 );
         canvas.setBackground(Color.GREEN);
         canvas.setVisible(true);
         frame.add(canvas);
-	    frame.pack();
+        
+	    //frame.pack();//get a good size of the frame
 
      }
+
+	@Override
+	public JFrame getFrame() {
+		// TODO Auto-generated method stub
+		return this.frame;
+	}
 	
 }

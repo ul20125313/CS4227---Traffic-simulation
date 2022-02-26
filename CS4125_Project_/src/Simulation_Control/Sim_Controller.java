@@ -44,7 +44,8 @@ public class Sim_Controller extends Thread_source{
 		this.map_he = 606; // need change
 		this.init_lanes();
 		this.create_Driver();
-		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes); 
+		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes);
+		
 		
 	}
 	
