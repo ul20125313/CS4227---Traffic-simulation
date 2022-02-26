@@ -33,7 +33,7 @@ public class Draw_map implements I_Draw_map{
 	private Graphics2D graphics;
 	private BufferStrategy buffer;
 	private BufferedImage background;
-	private final String BACKGROUND_PATH;
+	private String BACKGROUND_PATH;
 	private Point center;
 	private ArrayList<Driver>drivers;
 
@@ -54,13 +54,13 @@ public class Draw_map implements I_Draw_map{
         this.lanes = lanes;   
 	    this.drivers = drivers;		    
 		this.display = idis;	
-		this.BACKGROUND_PATH = "background.png";
-		this.background =  create_background();
+		setmorningbackground();
 		this.set_map();
 		print_important_info();
 		Observer_init();
 	
 	}
+
 	
 	private void print_important_info()
 	{
@@ -156,7 +156,18 @@ public class Draw_map implements I_Draw_map{
 		
 	}
 	
-	
+	public void setnightbackground()
+	{
+		this.BACKGROUND_PATH = "nightbackground.png";
+		this.background =  create_background();
+		
+	}
+	public void setmorningbackground()
+	{
+		this.BACKGROUND_PATH = "background.png";
+		this.background =  create_background();
+		
+	}
 	
 	private void drawbackground() {
 		this.graphics.drawImage(this.background, 0,0,null);
@@ -165,6 +176,7 @@ public class Draw_map implements I_Draw_map{
 	
 	public void render() 
 	{
+		
 
 		this.drawbackground();
 		for (Lane l : this.lanes) 
