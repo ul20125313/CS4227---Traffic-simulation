@@ -9,7 +9,7 @@ public class ChangeBackgroundToNight implements Command{
 	}
 	public void execute()
 	{
-		d_m.setmorningbackground();
+		d_m.setnightbackground();
 	}
 
 

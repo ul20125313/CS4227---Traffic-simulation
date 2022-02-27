@@ -7,5 +7,6 @@ public interface IDisplay {
     void createDisplay();
     Canvas getCanvas();
     JFrame getFrame();
+    ButtonCreate get_ButtonCreate();
 
 }

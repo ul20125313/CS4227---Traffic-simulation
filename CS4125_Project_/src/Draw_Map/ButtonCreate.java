@@ -2,35 +2,57 @@ package Draw_Map;
 
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import Command.ChangeBackgroundToNight;
+import Command.RemoteControl;
+
 public class ButtonCreate {
 	private JFrame f;
+	private JButton button;
+	private Draw_map d_m;
 	public ButtonCreate(JFrame f)
 	{
 		this.f = f;
 	}
-	public void addButton()
+	public void setMap(Draw_map d_m)
+	{
+		this.d_m = d_m;
+		createButtonListener();
+		
+	}
+	public void createButton()
 	{   
-		JButton button = new JButton("1");
+		button = new JButton("1");
 		button.setBounds(1140, 40, 60, 30);
         Container content = f.getContentPane();
         content.setLayout(null);
         content.add(button);	
-//        button.addActionListener(new ActionListener(
-//        		{
-//
-//					@Override
-//					public void actionPerformed(ActionEvent e) {
-//						// TODO Auto-generated method stub
-//						RemoteControl rc = new RemoteControl();
-//						
-//					}
-//
-//        		}
-//        		);
+        
+       
+	}
+	public void createButtonListener()
+	{
+		 button.addActionListener(new ActionListener()
+ 		{
+ 	           public void actionPerformed(ActionEvent e)
+ 	           {
+ 	        	   System.out.print("sd");
+ 	        	   ChangeBackgroundToNight cn = new ChangeBackgroundToNight(d_m);
+ 	        	   RemoteControl rc = new RemoteControl(cn);
+ 	           }
+ 		}
+ 
+ 		
+ );
+	}
+	public JButton getButton()
+	{
+		return this.button;
 	}
 
 }

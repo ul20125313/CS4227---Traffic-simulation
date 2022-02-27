@@ -18,6 +18,7 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	private JFrame frame;
 	private Canvas canvas;
 	private Dimension screen;
+	private  ButtonCreate Night_Button_Set;
 	
 	public Display(double map_wi, double map_he)
 	{
@@ -45,8 +46,9 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         frame.setMinimumSize(new Dimension(this.map_wi, this.map_he));
         frame.setLocation(0, 0);
         frame.setSize(1500,1000);
-        ButtonCreate b = new ButtonCreate(frame);
-        b.addButton();
+        this.Night_Button_Set = new ButtonCreate(frame);
+        this.Night_Button_Set.createButton();
+       
 
 
         
@@ -64,6 +66,12 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	public JFrame getFrame() {
 		// TODO Auto-generated method stub
 		return this.frame;
+	}
+
+	@Override
+	public ButtonCreate get_ButtonCreate() {
+		// TODO Auto-generated method stub
+		return this.Night_Button_Set;
 	}
 	
 }

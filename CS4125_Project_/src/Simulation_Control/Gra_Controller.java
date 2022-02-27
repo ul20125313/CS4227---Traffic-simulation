@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import Draw_Map.ButtonCreate;
 import Draw_Map.Display;
 import Draw_Map.Draw_map;
 import Draw_Map.IDisplay;
@@ -17,6 +19,7 @@ public class Gra_Controller extends Thread_source{
 	private double map_wi, map_he;
 	public Draw_map d_map;
 	private IDisplay idisplay;
+	private ButtonCreate b_c;
 
 	
 	public Gra_Controller(double ui_wi, double ui_he, ArrayList<Driver>drivers, ArrayList<Lane> lanes)
@@ -27,6 +30,8 @@ public class Gra_Controller extends Thread_source{
 	this.initDisplay();
 
 	this.d_map = new Draw_map(idisplay, map_wi, map_he, drivers, lanes);
+	this.b_c = this.idisplay.get_ButtonCreate();
+	this.b_c.setMap(this.d_map);
 
 	
 //	System.out.println("Gra_Control map_width "+map_wi+" Map_height "+map_he);
