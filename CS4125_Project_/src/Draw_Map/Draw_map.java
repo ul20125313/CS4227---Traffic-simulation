@@ -48,6 +48,7 @@ public class Draw_map implements I_Draw_map{
 	
 	public Draw_map(IDisplay idis, double map_wi, double map_he, ArrayList<Driver>drivers, ArrayList<Lane> lanes)
 	{
+		
 		this.Map_size_x = (int)map_wi;
 		this.Map_size_y = (int)map_he;   			    
 	    this.center = new Point((Map_size_x), (Map_size_y));
@@ -61,7 +62,10 @@ public class Draw_map implements I_Draw_map{
 	
 	}
 
-	
+	public void a()
+	{
+		System.out.println(this.BACKGROUND_PATH);
+	}
 	private void print_important_info()
 	{
 		System.out.println("Map size: " + Map_size_x + " " + Map_size_y);
@@ -178,6 +182,7 @@ public class Draw_map implements I_Draw_map{
 	{
 		
 
+		//System.out.println(this.BACKGROUND_PATH);
 		this.drawbackground();
 		for (Lane l : this.lanes) 
 		{

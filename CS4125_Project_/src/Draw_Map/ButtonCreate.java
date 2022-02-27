@@ -41,9 +41,9 @@ public class ButtonCreate {
  		{
  	           public void actionPerformed(ActionEvent e)
  	           {
- 	        	   System.out.print("sd");
  	        	   ChangeBackgroundToNight cn = new ChangeBackgroundToNight(d_m);
  	        	   RemoteControl rc = new RemoteControl(cn);
+ 	        	   rc.ButtonPressed();
  	           }
  		}
  
