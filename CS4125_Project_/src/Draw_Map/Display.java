@@ -19,6 +19,10 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	private Canvas canvas;
 	private Dimension screen;
 	private  ButtonCreate Night_Button_Set;
+	private  ButtonCreate Morn_Button_Set;
+
+	
+	
 	
 	public Display(double map_wi, double map_he)
 	{
@@ -45,12 +49,15 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         frame.setLocationRelativeTo(null);// set the default location of our window
         frame.setMinimumSize(new Dimension(this.map_wi, this.map_he));
         frame.setLocation(0, 0);
-        frame.setSize(1500,1000);
+        frame.setSize(1100,641);
+        
+        
+        
         this.Night_Button_Set = new ButtonCreate(frame);
-        this.Night_Button_Set.createButton();
+        this.Night_Button_Set.createButton(1000, 0, 60, 30, 1);
+        this.Morn_Button_Set = new ButtonCreate(frame);
+        this.Morn_Button_Set.createButton(1000, 30, 60, 30, 2);
        
-
-
         
         canvas = new Canvas();//it looks like a curtain and inside the frame
         canvas.setSize(1000 , 606 );
@@ -58,7 +65,6 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         canvas.setVisible(true);
         frame.add(canvas);
         
-	    //frame.pack();//get a good size of the frame
 
      }
 
@@ -69,9 +75,19 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	}
 
 	@Override
-	public ButtonCreate get_ButtonCreate() {
-		// TODO Auto-generated method stub
-		return this.Night_Button_Set;
+	public ButtonCreate get_ButtonCreate(int code) {
+	
+		switch(code)
+		{
+		case(1):
+			return this.Night_Button_Set;
+		case(2):
+			return this.Morn_Button_Set;
+		default:
+			return new ButtonCreate(new JFrame());
+
+		}
+		
 	}
 	
 }
