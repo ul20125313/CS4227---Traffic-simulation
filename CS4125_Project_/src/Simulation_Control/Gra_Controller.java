@@ -42,6 +42,7 @@ public class Gra_Controller extends Thread_source{
 	this.b_c_4 = this.idisplay.get_ButtonCreate(4);
 	this.b_c_4.setMap(this.d_map);
 
+
 	
 //	System.out.println("Gra_Control map_width "+map_wi+" Map_height "+map_he);
 	

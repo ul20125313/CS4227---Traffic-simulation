@@ -3,6 +3,7 @@
  */
 package Driver;
 
+import CollisionDetection.CollisionDetection;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
 
@@ -18,7 +19,7 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 	private boolean isDecelerate;
 		
     // every kind of driver has different driving style
-	public IrritableDriver(String name, Vehicle vehicle, String driverTemperType) {// the constructor function of this class
+	public IrritableDriver(String name, Vehicle vehicle, String driverTemperType ) {// the constructor function of this class
 		super(name, vehicle, driverTemperType);
 //		this.DriverTemperType = "Irritable";
 		this.max_limitedSpeed = 4 * 30; // the max limit speed for iterative driver
@@ -67,11 +68,20 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 		t.setMessage("Driver");
 		while(true)
 		{
+			
 			t.start();
+		    disdetect();
 			this.drive();
 			this.Drive();
 			t.end();
 		}
+		
+	}
+	
+	public void disdetect()
+	{
+		super.c.set_my_loc(super.getVehilce().getPosition().getX(),super.getVehilce().getPosition().getY());
+		System.out.println(super.getName()+" "+super.c.getTargetDriver().getName()+super.c.Cal_Distence_Between_Twocars());
 		
 	}
 
