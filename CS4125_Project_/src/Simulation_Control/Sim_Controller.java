@@ -2,6 +2,7 @@ package Simulation_Control;
 import java.awt.*;
 import java.util.ArrayList;
 
+import CollisionDetection.CollisionDetection;
 import Driver.Driver;
 import Driver.DriverFactory;
 import Driver.IrritableDriver;
@@ -33,6 +34,7 @@ public class Sim_Controller extends Thread_source{
 	private Point Secondcar_loc;
 	private Point Thirdcar_loc;
 	private Point Fourthcar_loc;
+	private CollisionDetection c1;
 	
 	public Sim_Controller()
 	{
@@ -64,10 +66,10 @@ public class Sim_Controller extends Thread_source{
 		VehicleEngineDecorator v3EngineCar = new V3EngineDecorator(Santana);
 		
 		
-		this.Firstcar_loc = new Point((541), (12));	
-		this.Secondcar_loc = new Point((541),(100));
-		this.Thirdcar_loc = new Point((541),(188));
-		this.Fourthcar_loc = new Point((541),(276));
+		this.Firstcar_loc = new Point((500), (25));	
+		this.Secondcar_loc = new Point((500),(50));
+		this.Thirdcar_loc = new Point((500),(75));
+		this.Fourthcar_loc = new Point((500),(506));
 		
 		
 		DriverFactory d_fac = new DriverFactory();
@@ -102,26 +104,16 @@ public class Sim_Controller extends Thread_source{
 		}
 		DriverTemperJudge = (int)(Math.random()*2);
 		if(DriverTemperJudge == 0) {
-			Driver Drive4 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Fourthcar_loc, this.lanes.get(3), v3EngineCar), "Jack", "Normal");
+			Driver Drive4 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Fourthcar_loc, this.lanes.get(0), v3EngineCar), "Jack", "Normal");
 			this.drivers.add(Drive4);
+			this.c1= new CollisionDetection(Drive4);
 		}
 		else if(DriverTemperJudge == 1) {
-			Driver Drive4 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Fourthcar_loc, this.lanes.get(3), v3EngineCar), "Jack", "Irritable");
+			Driver Drive4 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Fourthcar_loc, this.lanes.get(0), v3EngineCar), "Jack", "Irritable");
 			this.drivers.add(Drive4);
+			this.c1= new CollisionDetection(Drive4);
 		}
-		
-//		Driver IrritableDr = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Firstcar_loc, this.lanes.get(0), v8EngineCar), "J.J");
-//		Driver NormalDr = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Secondcar_loc, this.lanes.get(1), v6EngineCar), "Sam");
-//		Driver NormalDr2 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Thirdcar_loc, this.lanes.get(2), v4EngineCar), "Tom");
-		
 
-//		NormalDriver NormalDriver = (NormalDriver)NormalDr;
-//		IrritableDriver IrritableDriver = (IrritableDriver)IrritableDr;
-		
-//		this.drivers.add(IrritableDr);
-//		this.drivers.add(NormalDr);
-//		this.drivers.add(NormalDr2);
-		
 	}
 	
 	public void init_lanes()
@@ -146,11 +138,13 @@ public class Sim_Controller extends Thread_source{
 				
 			if(d.getClass().toString().equals("class Driver.NormalDriver")) 
 			{
+				d.setColl(this.c1);
 				NormalDriver NormalDriver = (NormalDriver)d;//downward transition, convert driver class to normalDriver class
 				new Thread(NormalDriver).start();		
 		    }
 		     else if(d.getClass().toString().equals("class Driver.IrritableDriver")) 
 		    {
+		    	 d.setColl(this.c1);
 		    	 IrritableDriver IrritableDriver = (IrritableDriver)d;//downward transition, convert driver class to irritableDriver class
 		    	 new Thread(IrritableDriver).start();
 			

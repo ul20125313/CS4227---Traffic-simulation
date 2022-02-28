@@ -29,6 +29,7 @@ public class Vehicle {
 	private double vehicleWidth;
 	private VehicleEngineDecorator veEngineDec;
 	private double acceleration;
+	private Point init_loc;
 
 	
 	public Vehicle() {
@@ -48,13 +49,45 @@ public class Vehicle {
 		this.vehicleWidth = veEngineDec.getVehicleWidth();
 		this.angular_speed = veEngineDec.getspeed();
 		this.imagePath = veEngineDec.getVehicleImagePath();
-		this.circle_angle = 0;
+		
 		this.angle = angle;
 		this.position = xy;
 		this.track = track;
 		this.carImage = createCarImage();
 		
+		this.init_loc = new Point();
+		this.init_loc.setLocation(xy.getX(), xy.getY());
+		
+		computeExistAngle();
 		this.acceleration = veEngineDec.getAcceleration();
+		
+	}
+	public void computeExistAngle()
+	{
+		double x1,y1;
+		double t;
+		//transform into the normal coordinate
+		if(init_loc.getX() > 500)
+		{
+			x1 = init_loc.getX() - 500;
+		}
+		
+		else
+		{
+			x1 = -500 + init_loc.getX();
+		}
+		
+		if(init_loc.getY() < 303)
+		{
+			y1 = 303-init_loc.getY();
+		}
+		else
+		{
+			y1 = -init_loc.getY() + 303;
+		}
+		
+		t = Math.atan2(x1, y1)*(180/Math.PI);
+		this.circle_angle = t;
 		
 	}
 
@@ -124,6 +157,7 @@ public class Vehicle {
 		this.position.x = (int)(Math.sin(Math.PI/180 *this.circle_angle) * this.track.get_Radius() + 553 - 22);//12
 		//coordinate transformation 
 		this.position.y = (int)(328 - Math.cos(Math.PI/180 *this.circle_angle) *  this.track.get_Radius() - 30);//20
+				
 	}
 	
 	
