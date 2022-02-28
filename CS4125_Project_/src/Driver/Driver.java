@@ -1,5 +1,4 @@
 package Driver;
-import CollisionDetection.CollisionDetection;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
 
@@ -8,7 +7,6 @@ public abstract class Driver implements Runnable{
 	private String name;
     protected Vehicle vehicle;
     protected String driverTemperType;
-    protected CollisionDetection c;
 
 	public Driver(String name, Vehicle vehicle, String driverTemperType)//the constructor of class driver
 	{
@@ -16,10 +14,6 @@ public abstract class Driver implements Runnable{
 		this.vehicle = vehicle;
 		this.driverTemperType = driverTemperType;
 		
-	}
-	public void setColl(CollisionDetection c)
-	{
-		this.c = c;
 	}
 	public String getName()// return the name
 	{
@@ -34,7 +28,6 @@ public abstract class Driver implements Runnable{
 	public void drive()// call the move function in instance vehicle
 	{
 		//it seems that driver is driving his car
-		
 		this.vehicle.move();
 	}
 	

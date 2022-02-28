@@ -172,6 +172,18 @@ public class Draw_map implements I_Draw_map{
 		this.background =  create_background();
 		
 	}
+	public void setautumnbackground()
+	{
+		this.BACKGROUND_PATH = "background_autumn.png";
+		this.background =  create_background();
+		
+	}
+	public void setwinterbackground()
+	{
+		this.BACKGROUND_PATH = "background_winter.png";
+		this.background =  create_background();
+		
+	}
 	
 	private void drawbackground() {
 		this.graphics.drawImage(this.background, 0,0,null);

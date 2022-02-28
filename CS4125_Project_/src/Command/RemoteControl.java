@@ -1,16 +1,18 @@
 package Command;
 
-public class RemoteControl {
-	private Command command;
+public abstract class RemoteControl {
+	protected Command command;
 	
 	public RemoteControl(Command command)
 	{
 		this.command = command;		
 	}
 	
-	public void ButtonPressed()
-	{
-		command.execute();
-	}
+	public abstract void UseRemote();
+	
+//	public void ButtonPressed()
+//	{
+//		command.execute();
+//	}
 
 }

@@ -21,6 +21,8 @@ public class Gra_Controller extends Thread_source{
 	private IDisplay idisplay;
 	private ButtonCreate b_c_1;
 	private ButtonCreate b_c_2;
+	private ButtonCreate b_c_3;
+	private ButtonCreate b_c_4;
 
 	
 	public Gra_Controller(double ui_wi, double ui_he, ArrayList<Driver>drivers, ArrayList<Lane> lanes)
@@ -35,6 +37,10 @@ public class Gra_Controller extends Thread_source{
 	this.b_c_1.setMap(this.d_map);
 	this.b_c_2 = this.idisplay.get_ButtonCreate(2);
 	this.b_c_2.setMap(this.d_map);
+	this.b_c_3 = this.idisplay.get_ButtonCreate(3);
+	this.b_c_3.setMap(this.d_map);
+	this.b_c_4 = this.idisplay.get_ButtonCreate(4);
+	this.b_c_4.setMap(this.d_map);
 
 	
 //	System.out.println("Gra_Control map_width "+map_wi+" Map_height "+map_he);

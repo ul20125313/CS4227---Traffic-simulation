@@ -18,8 +18,10 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	private JFrame frame;
 	private Canvas canvas;
 	private Dimension screen;
-	private  ButtonCreate Night_Button_Set;
-	private  ButtonCreate Morn_Button_Set;
+	private ButtonCreate Night_Button_Set;
+	private ButtonCreate Morn_Button_Set;
+	private ButtonCreate Autumn_Button_Set;
+	private ButtonCreate Winter_Button_Set;
 
 	
 	
@@ -57,6 +59,10 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         this.Night_Button_Set.createButton(1000, 0, 60, 30, 1);
         this.Morn_Button_Set = new ButtonCreate(frame);
         this.Morn_Button_Set.createButton(1000, 30, 60, 30, 2);
+        this.Autumn_Button_Set = new ButtonCreate(frame);
+        this.Autumn_Button_Set.createButton(1000, 60, 60, 30, 3);
+        this.Winter_Button_Set = new ButtonCreate(frame);
+        this.Winter_Button_Set.createButton(1000, 90, 60, 30, 4);
        
         
         canvas = new Canvas();//it looks like a curtain and inside the frame
@@ -83,6 +89,10 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 			return this.Night_Button_Set;
 		case(2):
 			return this.Morn_Button_Set;
+		case(3):
+			return this.Autumn_Button_Set;
+		case(4):
+			return this.Winter_Button_Set;
 		default:
 			return new ButtonCreate(new JFrame());
 

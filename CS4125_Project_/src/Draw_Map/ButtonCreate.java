@@ -8,8 +8,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import Command.ButtonRemoteControl;
+import Command.ChangeBackgroundToAutumn;
 import Command.ChangeBackgroundToMorning;
 import Command.ChangeBackgroundToNight;
+import Command.ChangeBackgroundToWinter;
 import Command.RemoteControl;
 
 public class ButtonCreate {
@@ -18,6 +21,8 @@ public class ButtonCreate {
 	private Draw_map d_m;
 	private static final int Night = 1;
 	private static final int morning = 2;
+	private static final int Autumn = 3;
+	private static final int Winter = 4;
 	
 	public ButtonCreate(JFrame f)
 	{
@@ -42,6 +47,10 @@ public class ButtonCreate {
         		this.createNightButtonListener();
         	case(morning):
         		this.createMorningButtonListener();
+        	case(Autumn):
+        		this.createAutumnButtonListener();
+        	case(Winter):
+        		this.createWinterButtonListener();
         	default:
         		System.out.print("add new button listener");
         
@@ -56,8 +65,8 @@ public class ButtonCreate {
  	           public void actionPerformed(ActionEvent e)
  	           {
  	        	   ChangeBackgroundToNight cn = new ChangeBackgroundToNight(d_m);
- 	        	   RemoteControl rc = new RemoteControl(cn);
- 	        	   rc.ButtonPressed();
+ 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
+ 	        	   brc.UseRemote();
  	           }
  		});
 	}
@@ -69,11 +78,38 @@ public class ButtonCreate {
  	           public void actionPerformed(ActionEvent e)
  	           {
  	        	   ChangeBackgroundToMorning cn = new ChangeBackgroundToMorning(d_m);
- 	        	   RemoteControl rc = new RemoteControl(cn);
- 	        	   rc.ButtonPressed();
+ 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
+ 	        	   brc.UseRemote();
  	           }
  		});
 	}
+	
+	public void createAutumnButtonListener()
+	{
+		 button.addActionListener(new ActionListener()
+ 		{
+ 	           public void actionPerformed(ActionEvent e)
+ 	           {
+ 	        	   ChangeBackgroundToAutumn cn = new ChangeBackgroundToAutumn(d_m);
+ 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
+ 	        	   brc.UseRemote();
+ 	           }
+ 		});
+	}
+	
+	public void createWinterButtonListener()
+	{
+		 button.addActionListener(new ActionListener()
+ 		{
+ 	           public void actionPerformed(ActionEvent e)
+ 	           {
+ 	        	   ChangeBackgroundToWinter cn = new ChangeBackgroundToWinter(d_m);
+ 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
+ 	        	   brc.UseRemote();
+ 	           }
+ 		});
+	}
+	
 	public JButton getButton()
 	{
 		
