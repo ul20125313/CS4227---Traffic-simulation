@@ -62,14 +62,34 @@ public class NormalDriver extends Driver{
 		// TODO Auto-generated method stub
 		Threadprocess t = new Threadprocess(Threadprocess.DEFAULT_FRAMERATE);
 		t.setMessage("Driver");
-		while(true)
+		while(!super.is_Collision)
 		{
-			t.start();
+			
+			t.start();    
 			this.drive();
 			this.Drive();
+//			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
+//			{
+//			
+//				check_if_collision();
+//				
+//			}
+//			if(super.getVehilce().getLane().getLaneNumber() == 2&&!super.getName().equals("Jim"))//modify
+//			{
+//				
+//				check_if_collision();
+//				
+//			}
+//			check_if_collision(); //detectcollision
 			t.end();
+			
 		}
 		
 	}
+//	public void check_if_collision ()
+//	{
+//		super.c.set_my_loc(super.getVehilce().getPosition().getX(), super.getVehilce().getPosition().getY());
+//		super.c.work(this);
+//	}
 
 }

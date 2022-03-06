@@ -45,12 +45,16 @@ public class ButtonCreate {
         {
         	case(Night):
         		this.createNightButtonListener();
+        	break;
         	case(morning):
         		this.createMorningButtonListener();
+        	break;
         	case(Autumn):
         		this.createAutumnButtonListener();
+        	break;
         	case(Winter):
         		this.createWinterButtonListener();
+        	break;
         	default:
         		System.out.print("add new button listener");
         

@@ -15,7 +15,6 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 	private double max_limitedSpeed;
 	private double min_limitedSpeed;
 	private double currentspeed;
-	
 	private boolean isDecelerate;
 		
     // every kind of driver has different driving style
@@ -66,23 +65,37 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 		// TODO Auto-generated method stub
 		Threadprocess t = new Threadprocess(Threadprocess.DEFAULT_FRAMERATE);
 		t.setMessage("Driver");
-		while(true)
+		while(!super.is_Collision)
 		{
 			
-			t.start();
-		    disdetect();
+			
+				
+			t.start();    
 			this.drive();
 			this.Drive();
+//			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
+//			{
+//				check_if_collision();
+//			}
+//			if(super.getVehilce().getLane().getLaneNumber() == 2&&!super.getName().equals("Jim"))//modify
+//			{
+//				check_if_collision();//detectcollision
+//			}
+//			check_if_collision();
 			t.end();
+			
 		}
 		
 	}
 	
-	public void disdetect()
-	{
-		super.c.set_my_loc(super.getVehilce().getPosition().getX(),super.getVehilce().getPosition().getY());
-		System.out.println(super.getName()+" "+super.c.getTargetDriver().getName()+super.c.Cal_Distence_Between_Twocars());
-		
-	}
+	
+	
+	
+//	public void check_if_collision ()
+//	{
+//		super.c.set_my_loc(super.getVehilce().getPosition().getX(), super.getVehilce().getPosition().getY());
+//		super.c.work(this);
+//	}
 
 }
+

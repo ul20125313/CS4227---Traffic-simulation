@@ -62,6 +62,7 @@ public class Vehicle {
 		this.acceleration = veEngineDec.getAcceleration();
 		
 	}
+
 	public void computeExistAngle()
 	{
 		double x1,y1;
