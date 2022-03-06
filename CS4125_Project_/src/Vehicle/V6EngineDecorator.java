@@ -4,6 +4,8 @@ public class V6EngineDecorator extends VehicleEngineDecorator{
 	
 	private double acceleration;
 	
+	public V6EngineDecorator() {}
+	
 	public V6EngineDecorator(VehicleType decoratedV) {
 		super(decoratedV);
 		setAcceleration();

@@ -11,6 +11,9 @@ public abstract class Driver implements Runnable{
     protected CollisionDetection c;
     protected boolean is_Collision;
     protected boolean cant_work_state;
+    public static int mode_code;
+    
+    public Driver() {}
 
 	public Driver(String name, Vehicle vehicle, String driverTemperType)//the constructor of class driver
 	{
@@ -19,7 +22,21 @@ public abstract class Driver implements Runnable{
 		this.driverTemperType = driverTemperType;
 		this.is_Collision = false;
 		this.cant_work_state = false;
-		
+		this.mode_code = 1;
+			
+	}
+	
+	public static void setCode_1()
+	{
+		mode_code = 1;
+	}
+	public static void setCode_2()
+	{
+		mode_code = 2;
+	}
+	public static void setCode_3()
+	{
+		mode_code = 3;
 	}
 	
 	public void set_cant_work_state()

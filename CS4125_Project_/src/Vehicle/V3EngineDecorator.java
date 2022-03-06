@@ -1,8 +1,15 @@
 package Vehicle;
 
+import Strategy.DrivingMode_Default;
+
 public class V3EngineDecorator extends VehicleEngineDecorator{
 	
 	private double acceleration;
+	
+	public V3EngineDecorator() {
+		DrivingMode_Default dsd = new DrivingMode_Default();
+		this.acceleration = dsd.getV3Engine();
+	}
 	
 	public V3EngineDecorator(VehicleType decoratedV) {// the constructor function 
 		super(decoratedV);// send this variable to the father class

@@ -14,6 +14,7 @@ public class NormalDriver extends Driver{
 	
 	private boolean isDecelerate;
 	
+	public NormalDriver() {}
 
 	public NormalDriver(String name, Vehicle vehicle, String driverTemperType) {
 		super(name, vehicle, driverTemperType);
@@ -52,6 +53,37 @@ public class NormalDriver extends Driver{
 				isDecelerate = false;
 		}		
 	}
+	
+	public void Drive_Safe() {
+		currentspeed = vehicle.getSpeed();
+		if(!isDecelerate) {//if the speed doesn't decrease, it will start increasing
+			//super.vehicle.speed_increase();// whether the speed increases depends on whether it exceeds the maximum of speed
+			if(currentspeed >= max_limitedSpeed)
+				isDecelerate = true;
+		}
+		else if(isDecelerate) {
+			//super.vehicle.speed_decrease();// whether the speed decreases depends on whether it is below the minimum of speed
+			if(currentspeed <= min_limitedSpeed)
+				isDecelerate = false;
+		}
+	}
+	
+	public void Drive_Racer() {// 取消减速度，提高加速度，让车保持加速行驶
+		currentspeed = vehicle.getSpeed();
+		if(!isDecelerate) {//if the speed doesn't decrease, it will start increasing
+			super.vehicle.speed_increase_plus();// whether the speed increases depends on whether it exceeds the maximum of speed
+			if(currentspeed >= max_limitedSpeed)
+				isDecelerate = true;
+		}
+		else if(isDecelerate) {
+			//super.vehicle.speed_decrease();// whether the speed decreases depends on whether it is below the minimum of speed
+			if(currentspeed <= min_limitedSpeed)
+				isDecelerate = false;
+		}
+	}
+		
+	
+	
 	// this function is used to inspect the output the results, in our final version, it won't be called
 	public void pri() {
 		System.out.println(vehicle.getCarName() + "--" + getDriverTemperType() + "--" + vehicle.getSpeed());
@@ -63,11 +95,26 @@ public class NormalDriver extends Driver{
 		Threadprocess t = new Threadprocess(Threadprocess.DEFAULT_FRAMERATE);
 		t.setMessage("Driver");
 		while(!super.is_Collision)
-		{
-			
-			t.start();    
-			this.drive();
-			this.Drive();
+		{	
+			if(super.mode_code == 1)
+			{
+				t.start();    
+			    this.drive();
+			    this.Drive();
+			}
+			else if(super.mode_code == 2)
+			{
+				t.start();    
+			    this.drive();
+			    this.Drive_Safe();
+				
+			}
+			else if(super.mode_code == 3)
+			{
+				t.start();
+				this.drive();
+				this.Drive_Racer();
+			}
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{
 //			
@@ -81,11 +128,54 @@ public class NormalDriver extends Driver{
 //				
 //			}
 //			check_if_collision(); //detectcollision
-			t.end();
-			
+			t.end();	
 		}
 		
+//		if(DrivingMode == 1) {//DrivingMode_Racer
+//		while(true) 
+//		{
+//		t.start();
+//		disdetect();
+//		this.drive();
+//		this.Drive_Racer();
+//		t.end();
+//		}
+//	}
+//	else if(DrivingMode == 2) {//DrivingMode_Safe 取消加速度和减速度，保持匀速行驶
+//		while(true) 
+//		{
+//			t.start();
+//			disdetect();
+//			this.drive();
+//			this.Driver_Safe();
+//			t.end();
+//		}
+//	}else {//DrivingMode_Default
+//		while(true)
+//		{
+//			t.start();
+//			disdetect();
+//			this.drive();//路程+速度
+//			this.Drive();//速度+加速度
+//			t.end();
+//		}
+//	}
+		
+		
+		
+		
+		
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 //	public void check_if_collision ()
 //	{
 //		super.c.set_my_loc(super.getVehilce().getPosition().getX(), super.getVehilce().getPosition().getY());

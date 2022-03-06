@@ -96,6 +96,10 @@ public class Vehicle {
 		this.angular_speed = this.angular_speed + this.acceleration; // if the speed increases, the speed will plus acceleration
 	}
 	
+	public void speed_increase_plus() {
+		this.angular_speed = (this.angular_speed + this.acceleration)*1.25;
+	}
+	
 	public void speed_decrease() {
 		this.angular_speed = this.angular_speed - 0.001;// if the speed increases, the speed will minus 0.001(default value)
 	}

@@ -1,15 +1,11 @@
 
-
-
-
-
-
-
 package Vehicle;
 
 public class V8EngineDecorator extends VehicleEngineDecorator{
 	
 	private double acceleration;
+	
+	public V8EngineDecorator() {}
 	
 	public V8EngineDecorator(VehicleType decoratedV) {
 		super(decoratedV);

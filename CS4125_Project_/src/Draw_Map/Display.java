@@ -22,8 +22,11 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	private ButtonCreate Morn_Button_Set;
 	private ButtonCreate Autumn_Button_Set;
 	private ButtonCreate Winter_Button_Set;
+	private ButtonCreate Racer_Button_Set;
+	private ButtonCreate Safe_Button_Set;
+	private ButtonCreate Default_Button_Set;
 
-	
+		
 	
 	
 	public Display(double map_wi, double map_he)
@@ -63,6 +66,16 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         this.Autumn_Button_Set.createButton(1000, 60, 60, 30, 3);
         this.Winter_Button_Set = new ButtonCreate(frame);
         this.Winter_Button_Set.createButton(1000, 90, 60, 30, 4);
+        
+        
+        this.Default_Button_Set = new ButtonCreate(frame);
+        this.Default_Button_Set.createButton(1000, 120, 60, 30, 5);
+        this.Safe_Button_Set = new ButtonCreate(frame);
+        this.Safe_Button_Set.createButton(1000, 150, 60, 30, 6);
+        this.Racer_Button_Set= new ButtonCreate(frame);
+        this.Racer_Button_Set.createButton(1000, 180, 60, 30, 7);
+       
+        
        
         
         canvas = new Canvas();//it looks like a curtain and inside the frame

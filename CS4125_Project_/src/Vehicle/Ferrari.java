@@ -1,5 +1,7 @@
 package Vehicle;
 
+import Strategy.DrivingMode_Default;
+
 public class Ferrari implements VehicleType{
 
 
@@ -12,7 +14,9 @@ public class Ferrari implements VehicleType{
 	// the private variables below is related to the information about Ferrari
 	public Ferrari()
 	{
-		this.speed = 1;
+		DrivingMode_Default dsd = new DrivingMode_Default();
+		this.speed = dsd.getFerrariSpeed();
+		
 		this.vehiclelength = 20;
 		this.vehiclewidth = 20;
 		this.vehiclepath = "Ferrari.png";//

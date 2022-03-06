@@ -1,5 +1,7 @@
 package Vehicle;
 
+import Strategy.DrivingMode_Default;
+
 public class Santana implements VehicleType{
 
 	private double speed;
@@ -11,7 +13,9 @@ public class Santana implements VehicleType{
 	// the private variables below is related to the information about Santana
 	public Santana()
 	{
-		this.speed = 0.2;
+		DrivingMode_Default dsd = new DrivingMode_Default();
+		this.speed = dsd.getSantanaSpeed();
+		
 		this.vehiclelength = 20;
 		this.vehiclewidth = 20;
 		this.vehiclepath = "Santana.png";//

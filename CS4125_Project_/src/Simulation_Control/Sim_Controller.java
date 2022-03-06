@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import CollisionDetection.CollisionDetection;
 import CollisionDetection.cd_Algorithm1;
 import CollisionDetection.cd_Algorithm2;
+import Draw_Map.ButtonCreate;
 import Driver.Driver;
 import Driver.DriverFactory;
 import Driver.IrritableDriver;
@@ -50,6 +51,8 @@ public class Sim_Controller extends Thread_source{
 	protected CollisionDetection c2;
 	protected CollisionDetection c3;
 	protected CollisionDetection c4;
+	
+
 	
 	public Sim_Controller()
 	{

@@ -17,6 +17,8 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 	private double currentspeed;
 	private boolean isDecelerate;
 		
+	public IrritableDriver() {}
+	
     // every kind of driver has different driving style
 	public IrritableDriver(String name, Vehicle vehicle, String driverTemperType ) {// the constructor function of this class
 		super(name, vehicle, driverTemperType);
@@ -54,6 +56,27 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 				isDecelerate = false;
 		}
 	}
+	
+	public void Drive_Safe() {//取消加速度和减速度，匀速行驶
+		currentspeed = vehicle.getSpeed();
+		
+	}
+	
+	public void Drive_Racer() {// 取消减速度，提高加速度，让车保持加速行驶
+		currentspeed = vehicle.getSpeed();
+		if(!isDecelerate) {//if the speed doesn't decrease, it will start increasing
+			super.vehicle.speed_increase_plus();// whether the speed increases depends on whether it exceeds the maximum of speed
+			if(currentspeed >= max_limitedSpeed)
+				isDecelerate = true;
+		}
+		else if(isDecelerate) {
+			//super.vehicle.speed_decrease();// whether the speed decreases depends on whether it is below the minimum of speed
+			if(currentspeed <= min_limitedSpeed)
+				isDecelerate = false;
+		}
+	}
+	
+	
 	// this function is used to inspect the output the results, in our final version, it won't be called
 	public void pri() 
 	{
@@ -65,14 +88,28 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 		// TODO Auto-generated method stub
 		Threadprocess t = new Threadprocess(Threadprocess.DEFAULT_FRAMERATE);
 		t.setMessage("Driver");
+		
 		while(!super.is_Collision)
 		{
-			
-			
+			if(super.mode_code == 1)
+			{
+				t.start();    
+			    this.drive();
+			    this.Drive();
+			}
+			else if(super.mode_code == 2)
+			{
+				t.start();    
+			    this.drive();
+			    this.Drive_Safe();
 				
-			t.start();    
-			this.drive();
-			this.Drive();
+			}
+			else if(super.mode_code == 3)
+			{
+				t.start();
+				this.drive();
+				this.Drive_Racer();
+			}
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{
 //				check_if_collision();
@@ -82,11 +119,44 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 //				check_if_collision();//detectcollision
 //			}
 //			check_if_collision();
-			t.end();
-			
+			t.end();		
 		}
+
+//		if(DrivingMode == 1) {//DrivingMode_Racer
+//		while(!super.is_Collision) 
+//		{
+//		t.start();
+//		disdetect();
+//		this.drive();
+//		this.Drive_Racer();
+//		t.end();
+//		}
+//	}
+//	else if(DrivingMode == 2) {//DrivingMode_Safe 取消加速度和减速度，保持匀速行驶
+//		while(!super.is_Collision) 
+//		{
+//			t.start();
+//			disdetect();
+//			this.drive();
+//			this.Drive_Safe();
+//			t.end();
+//		}
+//	}else {//DrivingMode_Default
+//		while(!super.is_Collision)
+//		{
+//			t.start();
+//			disdetect();
+//			this.drive();//路程+速度
+//			this.Drive();//速度+加速度
+//			t.end();
+//		}
+//	}
+		
 		
 	}
+	
+	
+	
 	
 	
 	

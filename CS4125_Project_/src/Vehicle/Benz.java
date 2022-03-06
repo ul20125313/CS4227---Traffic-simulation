@@ -1,5 +1,7 @@
 package Vehicle;
 
+import Strategy.DrivingMode_Default;
+
 public class Benz implements VehicleType{
 
 	private double speed;
@@ -11,7 +13,9 @@ public class Benz implements VehicleType{
 	// the private variables below is related to the information about Benz
 	public Benz()
 	{
-		this.speed = 0.5;
+		DrivingMode_Default dsd = new DrivingMode_Default();
+		this.speed = dsd.getBenzSpeed();
+		
 		this.vehiclelength = 20;
 		this.vehiclewidth = 20;
 		this.vehiclepath = "Benz.png";//

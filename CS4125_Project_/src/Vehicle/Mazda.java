@@ -1,5 +1,7 @@
 package Vehicle;
 
+import Strategy.DrivingMode_Default;
+
 public class Mazda implements VehicleType{
 
 	private double speed;
@@ -11,7 +13,9 @@ public class Mazda implements VehicleType{
 	// the private variables below is related to the information about Mazda
 	public Mazda()
 	{
-		this.speed = 0.3;
+		DrivingMode_Default dsd = new DrivingMode_Default();
+		this.speed = dsd.getMazdaSpeed();
+		
 		this.vehiclelength = 20;
 		this.vehiclewidth = 20;
 		this.vehiclepath = "Mazda.png";//

@@ -14,6 +14,7 @@ import Command.ChangeBackgroundToMorning;
 import Command.ChangeBackgroundToNight;
 import Command.ChangeBackgroundToWinter;
 import Command.RemoteControl;
+import Driver.Driver;
 
 public class ButtonCreate {
 	private JFrame f;
@@ -23,6 +24,9 @@ public class ButtonCreate {
 	private static final int morning = 2;
 	private static final int Autumn = 3;
 	private static final int Winter = 4;
+	private static final int Default = 5;
+	private static final int Safe = 6;
+	private static final int Racer = 7;
 	
 	public ButtonCreate(JFrame f)
 	{
@@ -55,6 +59,16 @@ public class ButtonCreate {
         	case(Winter):
         		this.createWinterButtonListener();
         	break;
+        	case(Default):
+        		this.createDefaultButtonListener();
+        	break;
+        	case(Safe):
+        		this.createSafeButtonListener();
+        	break;
+        	case(Racer):
+        		this.createRacerButtonListener();
+        	break;
+        		
         	default:
         		System.out.print("add new button listener");
         
@@ -62,6 +76,41 @@ public class ButtonCreate {
         	
        
 	}
+	public void createDefaultButtonListener()
+	{
+		 button.addActionListener(new ActionListener()
+	 		{
+	 	           public void actionPerformed(ActionEvent e)
+	 	           {
+	 	        	  Driver.setCode_1();
+	 	           }
+	 		});
+		
+	}
+	
+	public void createSafeButtonListener()
+	{
+		 button.addActionListener(new ActionListener()
+	 		{
+	 	           public void actionPerformed(ActionEvent e)
+	 	           {
+	 	        	  Driver.setCode_2();
+	 	           }
+	 		});
+		
+	}
+	public void createRacerButtonListener()
+	{
+		 button.addActionListener(new ActionListener()
+	 		{
+	 	           public void actionPerformed(ActionEvent e)
+	 	           {
+	 	        	  Driver.setCode_3();
+	 	           }
+	 		});
+		
+	}
+	
 	public void createNightButtonListener()
 	{
 		 button.addActionListener(new ActionListener()
