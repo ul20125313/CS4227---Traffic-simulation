@@ -1,2 +1,20 @@
 /Driver/
+<<<<<<< HEAD
 /Strategy/
+=======
+/Observer/
+/Road/
+/Simulation_Control/
+/Strategy/
+/Thread/
+/Vehicle/
+/module-info.class
+<<<<<<< HEAD
+/Adapter/
+=======
+<<<<<<< HEAD
+/Builder/
+=======
+>>>>>>> 78c89d28244346e75466c7f031012ae43406b4db
+>>>>>>> 971d53aacca5c7b530fb9ae5dff5f8cf66067449
+>>>>>>> 7a901ea7448e7cb2dcc12d02dfd00439c59d9db8
