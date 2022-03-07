@@ -165,6 +165,14 @@ public class Vehicle {
 				
 	}
 	
+	public void accelerate() {
+		this.angular_speed = this.angular_speed + 0.5;
+	}
+	
+	public void decelerate() {
+		this.angular_speed = this.angular_speed - 0.5;
+	}
+	
 	
 	public double getVehicleLength() 
 	{

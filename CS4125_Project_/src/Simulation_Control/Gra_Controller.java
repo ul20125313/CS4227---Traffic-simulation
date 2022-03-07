@@ -23,28 +23,29 @@ public class Gra_Controller extends Thread_source{
 	private ButtonCreate b_c_2;
 	private ButtonCreate b_c_3;
 	private ButtonCreate b_c_4;
+	private Sim_Controller sim_c;
 
 	
-	public Gra_Controller(double ui_wi, double ui_he, ArrayList<Driver>drivers, ArrayList<Lane> lanes)
+	public Gra_Controller(double ui_wi, double ui_he, ArrayList<Driver>drivers, ArrayList<Lane> lanes, Sim_Controller sim_c)
 	{
-		
-	this.map_he = ui_he;
-	this.map_wi = ui_wi;
-	this.initDisplay();
+		this.sim_c = sim_c;	
+		this.map_he = ui_he;
+		this.map_wi = ui_wi;
+		this.initDisplay();
 
-	this.d_map = new Draw_map(idisplay, map_wi, map_he, drivers, lanes);
-	this.b_c_1 = this.idisplay.get_ButtonCreate(1);
-	this.b_c_1.setMap(this.d_map);
-	this.b_c_2 = this.idisplay.get_ButtonCreate(2);
-	this.b_c_2.setMap(this.d_map);
-	this.b_c_3 = this.idisplay.get_ButtonCreate(3);
-	this.b_c_3.setMap(this.d_map);
-	this.b_c_4 = this.idisplay.get_ButtonCreate(4);
-	this.b_c_4.setMap(this.d_map);
+		this.d_map = new Draw_map(idisplay, map_wi, map_he, drivers, lanes);
+		this.b_c_1 = this.idisplay.get_ButtonCreate(1);
+		this.b_c_1.setMap(this.d_map);
+		this.b_c_2 = this.idisplay.get_ButtonCreate(2);
+		this.b_c_2.setMap(this.d_map);
+		this.b_c_3 = this.idisplay.get_ButtonCreate(3);
+		this.b_c_3.setMap(this.d_map);
+		this.b_c_4 = this.idisplay.get_ButtonCreate(4);
+		this.b_c_4.setMap(this.d_map);
 
 
 	
-//	System.out.println("Gra_Control map_width "+map_wi+" Map_height "+map_he);
+//		System.out.println("Gra_Control map_width "+map_wi+" Map_height "+map_he);
 	
 	}
 	
@@ -69,7 +70,7 @@ public class Gra_Controller extends Thread_source{
 	public void initDisplay()
 	{
 		
-		idisplay = new Display(map_wi, map_he );
+		idisplay = new Display(map_wi, map_he, sim_c);
 		idisplay.createDisplay();
 		
 	}

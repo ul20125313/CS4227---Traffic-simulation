@@ -2,7 +2,8 @@ package Draw_Map;
 
 import javax.swing.*;
 
-import Command.RemoteControl;
+import Command.CommandController;
+import Simulation_Control.Sim_Controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,13 +26,16 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	private ButtonCreate Racer_Button_Set;
 	private ButtonCreate Safe_Button_Set;
 	private ButtonCreate Default_Button_Set;
+	
+	private Sim_Controller sim_c;
+//	private SpeedChangedKey speedchanged_key;
 
 		
 	
 	
-	public Display(double map_wi, double map_he)
+	public Display(double map_wi, double map_he, Sim_Controller sim_c)
 	{
-		
+		this.sim_c = sim_c;
 		this.map_wi = (int)map_wi;
 		this.map_he = (int)map_he;
 		this.screen = new Dimension();
@@ -83,6 +87,10 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         canvas.setBackground(Color.GREEN);
         canvas.setVisible(true);
         frame.add(canvas);
+        this.sim_c.setJframe(frame);
+        
+//      speedchanged_key = new AccelerateKey(frame);
+//      speedchanged_key.setJframe(frame);
         
 
      }

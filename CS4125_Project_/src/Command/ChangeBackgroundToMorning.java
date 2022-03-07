@@ -11,5 +11,11 @@ public class ChangeBackgroundToMorning implements Command{
 	{
 		d_m.setmorningbackground();
 	}
+	
+	@Override
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

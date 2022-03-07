@@ -12,5 +12,10 @@ public class ChangeBackgroundToWinter implements Command{
 		d_m.setwinterbackground();
 	}
 
-
+	
+	@Override
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
 }

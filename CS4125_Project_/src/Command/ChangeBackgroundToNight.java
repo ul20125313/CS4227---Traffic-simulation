@@ -12,5 +12,10 @@ public class ChangeBackgroundToNight implements Command{
 		d_m.setnightbackground();
 	}
 
+	@Override
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

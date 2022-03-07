@@ -2,10 +2,14 @@ package Simulation_Control;
 import java.awt.*;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 
 import CollisionDetection.CollisionDetection;
 import CollisionDetection.cd_Algorithm1;
 import CollisionDetection.cd_Algorithm2;
+import Command.SpeedChangedKey;
+import Command.VehicleAccelerationCommand;
+import Command.VehicleDecelerationCommand;
 import Draw_Map.ButtonCreate;
 import Driver.Driver;
 import Driver.DriverFactory;
@@ -44,6 +48,11 @@ public class Sim_Controller extends Thread_source{
 	private Point Seventhcar_loc;
 	private Point Eighthcar_loc;
 	private Point Ninthcar_loc;
+	private JFrame jf;
+	private SpeedChangedKey speedchanged_key;
+	
+	public VehicleAccelerationCommand vehicleAccelerationCommand;
+	public VehicleDecelerationCommand vehicleDecelerationCommand;
 	
 	
 	
@@ -64,10 +73,17 @@ public class Sim_Controller extends Thread_source{
 		this.map_wi = 1000;
 		this.map_he = 606; // need change
 		this.init_lanes();
+		
 		this.create_Driver();
-		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes);
+		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes, this);
+		this.speedchanged_key = new SpeedChangedKey(jf);
 		
 		
+	}
+	
+	public void setJframe(JFrame jf)
+	{
+		this.jf = jf;
 	}
 	
 	public void create_Driver()
@@ -213,6 +229,16 @@ public class Sim_Controller extends Thread_source{
 		for(Driver d : drivers)//every driver is thread, so here, it starts every thread
 		{
 				
+			if(d.getName().equals("J.J")) {
+				this.speedchanged_key.setDriver(d);
+				
+				this.vehicleAccelerationCommand = new VehicleAccelerationCommand(d);
+				this.speedchanged_key.getvehicleAccelerationCommand(vehicleAccelerationCommand);
+				this.vehicleDecelerationCommand = new VehicleDecelerationCommand(d);
+				this.speedchanged_key.getvehicleDecelerationCommand(vehicleDecelerationCommand);
+				
+				this.speedchanged_key.setKeyEvent();
+			}
 			if(d.getClass().toString().equals("class Driver.NormalDriver")) 
 			{
 //				if(d.getVehilce().getLane().getLaneNumber() == 1)

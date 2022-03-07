@@ -11,6 +11,12 @@ public class ChangeBackgroundToAutumn implements Command{
 	{
 		d_m.setautumnbackground();
 	}
+	
+	@Override
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

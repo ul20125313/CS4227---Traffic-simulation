@@ -8,12 +8,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import Command.ButtonRemoteControl;
 import Command.ChangeBackgroundToAutumn;
 import Command.ChangeBackgroundToMorning;
 import Command.ChangeBackgroundToNight;
 import Command.ChangeBackgroundToWinter;
-import Command.RemoteControl;
+import Command.CommandController;
 import Driver.Driver;
 
 public class ButtonCreate {
@@ -118,8 +117,8 @@ public class ButtonCreate {
  	           public void actionPerformed(ActionEvent e)
  	           {
  	        	   ChangeBackgroundToNight cn = new ChangeBackgroundToNight(d_m);
- 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
- 	        	   brc.UseRemote();
+ 	        	   CommandController cc = new CommandController(cn);
+ 	        	   cc.changeBackground();
  	           }
  		});
 	}
@@ -131,8 +130,8 @@ public class ButtonCreate {
  	           public void actionPerformed(ActionEvent e)
  	           {
  	        	   ChangeBackgroundToMorning cn = new ChangeBackgroundToMorning(d_m);
- 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
- 	        	   brc.UseRemote();
+ 	        	   CommandController cc = new CommandController(cn);
+	        	   cc.changeBackground();
  	           }
  		});
 	}
@@ -144,8 +143,8 @@ public class ButtonCreate {
  	           public void actionPerformed(ActionEvent e)
  	           {
  	        	   ChangeBackgroundToAutumn cn = new ChangeBackgroundToAutumn(d_m);
- 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
- 	        	   brc.UseRemote();
+ 	        	   CommandController cc = new CommandController(cn);
+	        	   cc.changeBackground();
  	           }
  		});
 	}
@@ -157,8 +156,8 @@ public class ButtonCreate {
  	           public void actionPerformed(ActionEvent e)
  	           {
  	        	   ChangeBackgroundToWinter cn = new ChangeBackgroundToWinter(d_m);
- 	        	   RemoteControl brc = new ButtonRemoteControl(cn);
- 	        	   brc.UseRemote();
+ 	        	   CommandController cc = new CommandController(cn);
+	        	   cc.changeBackground();
  	           }
  		});
 	}
