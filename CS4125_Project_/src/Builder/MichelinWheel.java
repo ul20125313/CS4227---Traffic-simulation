@@ -1,25 +1,27 @@
 package Builder;
 
-import Vehicle.*;
+import Vehicle.Vehicle;
 
-public class CheapWheel extends Wheel{
+public class MichelinWheel extends Wheel{
+	
 	
 	private double Friction;
 	private double Loss;
-	public CheapWheel() 
+	public MichelinWheel() 
 	{
 		setAttribute();
 		
 	}
 	private void setAttribute()
 	{
-		this.Friction = 0.5;
-		this.Loss = 3;
+		this.Friction = 1;
+		this.Loss = 0;
 	}
-	
 	public String getExteriorName() {
-		return "Exterior"+" CheapWheel";
+		return "Exterior"+" MichelinWheel";
 		
 	}
 	
+	
+
 }

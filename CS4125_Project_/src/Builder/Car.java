@@ -20,6 +20,16 @@ public class Car {
 		ins.add(in);
 	}
 	
+	public ArrayList<Exterior> getExlist()
+	{
+		return this.exs;	
+	}
+	
+	public ArrayList<Interior> getInlist()
+	{
+		return this.ins;
+	}
+	
 
 }
 

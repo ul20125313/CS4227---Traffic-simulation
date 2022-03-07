@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import Adapter.CHYPayment;
+import Builder.CarBuilder;
+import Builder.Exterior;
+import Builder.Interior;
 import CollisionDetection.CollisionDetection;
 import CollisionDetection.cd_Algorithm1;
 import CollisionDetection.cd_Algorithm2;
@@ -62,11 +65,16 @@ public class Sim_Controller extends Thread_source{
 	protected CollisionDetection c3;
 	protected CollisionDetection c4;
 	
+	private CarBuilder cb1;
+	
 
 	
 	public Sim_Controller()
 	{
-		
+		this.cb1 = new CarBuilder();
+		this.cb1.prepare_cheap_car();
+		this.showCheapCar_Parts();
+	
 		this.drivers = new ArrayList<>();
 		this.Detections = new ArrayList<>();
 		System.out.println("[Sim_Control]");
@@ -80,6 +88,26 @@ public class Sim_Controller extends Thread_source{
 		this.speedchanged_key = new SpeedChangedKey(jf);
 		
 		
+	}
+	public void showCheapCar_Parts()
+	{
+		
+		System.out.println("Cheap car's parts list:");
+		ArrayList<Exterior>exs;
+		exs = this.cb1.getCar().getExlist();
+		for(Exterior ex : exs)
+		{
+			System.out.println(ex.getExteriorName());
+		}
+		
+		
+		ArrayList<Interior>ins;
+		ins = this.cb1.getCar().getInlist();
+		for(Interior in : ins)
+		{
+			System.out.println(in.getInteriorName());
+		}
+		System.out.println();
 	}
 	
 	public void setJframe(JFrame jf)

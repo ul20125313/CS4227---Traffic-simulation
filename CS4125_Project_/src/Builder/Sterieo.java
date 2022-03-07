@@ -1,5 +1,5 @@
 package Builder;
 
-public class Sterieo implements Interior{
+public abstract class Sterieo implements Interior{
 
 }
