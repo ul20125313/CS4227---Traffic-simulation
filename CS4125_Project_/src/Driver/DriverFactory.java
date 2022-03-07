@@ -10,13 +10,13 @@ public class DriverFactory  {
 		IRRITABLE
 	}
 	
-	public Driver createDriver(DriverTemper temper, Vehicle vehicle, String name, String driverTemperType) {
+	public Driver createDriver(DriverTemper temper, Vehicle vehicle, String name, String driverTemperType, int balance) {
 		switch(temper) { // return the corressponding instance
 			case NORMAL:{
-				return new NormalDriver(name,vehicle, driverTemperType);
+				return new NormalDriver(name,vehicle, driverTemperType, balance);
 			}
 			case IRRITABLE:{
-				return new IrritableDriver(name,vehicle, driverTemperType);
+				return new IrritableDriver(name,vehicle, driverTemperType, balance);
 			}
 		}
 		return null;                      

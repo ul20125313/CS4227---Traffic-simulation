@@ -13,10 +13,12 @@ public abstract class Driver implements Runnable{
     protected boolean is_Collision;
     protected boolean cant_work_state;
     public static int mode_code;
-    
+    protected int balance;
     public Driver() {}
+    
 
-	public Driver(String name, Vehicle vehicle, String driverTemperType)//the constructor of class driver
+    
+	public Driver(String name, Vehicle vehicle, String driverTemperType, int balance)//the constructor of class driver
 	{
 		this.name = name;
 		this.vehicle = vehicle;
@@ -24,9 +26,13 @@ public abstract class Driver implements Runnable{
 		this.is_Collision = false;
 		this.cant_work_state = false;
 		this.mode_code = 1;
+		this.balance = balance;
 			
 	}
-	
+	public int getBalance()
+	{
+		return this.balance;
+	}
 	public boolean getIs_Collosion() {
 		return is_Collision;
 	}

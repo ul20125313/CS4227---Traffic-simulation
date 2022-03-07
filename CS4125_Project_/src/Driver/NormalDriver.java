@@ -17,8 +17,8 @@ public class NormalDriver extends Driver{
 	
 	public NormalDriver() {}
 
-	public NormalDriver(String name, Vehicle vehicle, String driverTemperType) {
-		super(name, vehicle, driverTemperType);
+	public NormalDriver(String name, Vehicle vehicle, String driverTemperType, int balance) {
+		super(name, vehicle, driverTemperType, balance);
 //		this.DriverTemperType = "Normal";
 		this.max_limitedSpeed = 2 * 30;// normal driver always has lower minimum speed
 		this.min_limitedSpeed = 1 * 30;// normal driver always has higher maximum speed

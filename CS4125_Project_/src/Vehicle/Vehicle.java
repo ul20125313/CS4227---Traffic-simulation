@@ -35,7 +35,6 @@ public class Vehicle {
 	public Vehicle() {
 		
 	}
-	
 	public Vehicle(double angular_speed, double circle_angle) {
 		this.angular_speed = angular_speed;
 		this.circle_angle = circle_angle;
@@ -63,6 +62,10 @@ public class Vehicle {
 		
 	}
 
+	public void setPosition(Point p)
+	{
+		this.position = p;
+	}
 	public void computeExistAngle()
 	{
 		double x1,y1;

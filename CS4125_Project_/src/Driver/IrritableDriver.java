@@ -21,8 +21,8 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 	public IrritableDriver() {}
 	
     // every kind of driver has different driving style
-	public IrritableDriver(String name, Vehicle vehicle, String driverTemperType ) {// the constructor function of this class
-		super(name, vehicle, driverTemperType);
+	public IrritableDriver(String name, Vehicle vehicle, String driverTemperType, int balance) {// the constructor function of this class
+		super(name, vehicle, driverTemperType, balance);
 //		this.DriverTemperType = "Irritable";
 		this.max_limitedSpeed = 4 * 30; // the max limit speed for iterative driver
 		this.min_limitedSpeed = 2 * 30; //the minimum of speed for iterative driver 
