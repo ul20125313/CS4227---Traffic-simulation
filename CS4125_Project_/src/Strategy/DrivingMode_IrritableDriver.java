@@ -7,31 +7,58 @@ public class DrivingMode_IrritableDriver implements Strategy{
 	//Safe mode: all cars will remain in uniform motion and the acceleration of all vehicles will be cancelled.
 	
 	@Override
-	public void changeDrivingMode_Irr_Default(IrritableDriver irr) {
-		irr.drive();
-	    irr.Drive();
+//	public void changeDrivingMode_Irr_Default(IrritableDriver irr) {
+//		irr.drive();
+//	    irr.Drive();
+//	}
+//	
+//	public void changeDrivingMode_Irr_Safe(IrritableDriver irr) {
+//		irr.drive();
+//	    irr.Drive_Safe();
+//	}
+//	
+//	public void changeDrivingMode_Irr_Racer(IrritableDriver irr) {
+//		irr.drive();
+//		irr.Drive_Racer();
+//	}
+//	
+//	public void changeDrivingMode_Nor_Default(NormalDriver nor) {}
+//	
+//	public void changeDrivingMode_Nor_Safe(NormalDriver nor) {}
+//	
+//	public void changeDrivingMode_Nor_Racer(NormalDriver nor) {}
+	
+	public void changeDrivingMode_Irr(int code, IrritableDriver irr) {
+		if(code == 1)//DefaultMode
+		{	    
+		    irr.drive();
+		    irr.Drive();	
+		}
+		else if(code == 2)//SafeMode
+		{
+		    irr.drive();
+		    irr.Drive_Safe();
+			
+		}
+		else if(code == 3)//RacerMode
+		{
+			irr.drive();
+			irr.Drive_Racer();
+		}
 	}
 	
-	public void changeDrivingMode_Irr_Safe(IrritableDriver irr) {
-		irr.drive();
-	    irr.Drive_Safe();
+	public void changeDrivingMode_Nor(int code, NormalDriver nor) {
+		//keep empty
 	}
-	
-	public void changeDrivingMode_Irr_Racer(IrritableDriver irr) {
-		irr.drive();
-		irr.Drive_Racer();
-	}
-	
-	public void changeDrivingMode_Nor_Default(NormalDriver nor) {}
-	
-	public void changeDrivingMode_Nor_Safe(NormalDriver nor) {}
-	
-	public void changeDrivingMode_Nor_Racer(NormalDriver nor) {}
-	
 	
 	
 	
 	}
+
+
+
+
+
 	
 //	private double FerrariSpeed_Safe;
 //	private double BenzSpeed_Safe;

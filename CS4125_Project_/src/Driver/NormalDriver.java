@@ -98,30 +98,8 @@ public class NormalDriver extends Driver{
 		while(!super.is_Collision)
 		{	
 			t.start();
-			if(super.mode_code == 1)//DefaultMode
-			{
-				//t.start();    
-//			    this.drive();
-//			    this.Drive();
-				DrivingMode_NormalDriver dmd = new DrivingMode_NormalDriver();
-				dmd.changeDrivingMode_Nor_Default(this);
-			}
-			else if(super.mode_code == 2)//SafeMode
-			{
-				//t.start();    
-//			    this.drive();
-//			    this.Drive_Safe();
-				DrivingMode_NormalDriver dmd = new DrivingMode_NormalDriver();
-				dmd.changeDrivingMode_Nor_Safe(this);
-			}
-			else if(super.mode_code == 3)//RacerMode
-			{
-				//t.start();
-//				this.drive();
-//				this.Drive_Racer();
-				DrivingMode_NormalDriver dmd = new DrivingMode_NormalDriver();
-				dmd.changeDrivingMode_Nor_Racer(this);
-			}
+			DrivingMode_NormalDriver dnd = new DrivingMode_NormalDriver(); 
+			dnd.changeDrivingMode_Nor(super.mode_code, this);	
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{
 //			

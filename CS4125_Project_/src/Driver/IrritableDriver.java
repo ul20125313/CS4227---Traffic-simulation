@@ -92,31 +92,9 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 		while(!super.is_Collision)
 		{
 			t.start();
-			if(super.mode_code == 1)//DefaultMode
-			{
-				//t.start();    
-//			    this.drive();
-//			    this.Drive();
-				DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver();
-				did.changeDrivingMode_Irr_Default(this);
-			}
-			else if(super.mode_code == 2)//SafeMode
-			{
-				//t.start();    
-//			    this.drive();
-//			    this.Drive_Safe();
-				DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver();
-				did.changeDrivingMode_Irr_Safe(this);
-			}
-			else if(super.mode_code == 3)//RacerMode
-			{
-				//t.start();
-//				this.drive();
-//				this.Drive_Racer();
-				DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver();
-				did.changeDrivingMode_Irr_Racer(this);
-				
-			}
+			DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver(); 
+			did.changeDrivingMode_Irr(super.mode_code, this);	
+			
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{
 //				check_if_collision();

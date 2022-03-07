@@ -4,26 +4,53 @@ import Driver.*;
 
 public class DrivingMode_NormalDriver implements Strategy{
 	
-	public void changeDrivingMode_Nor_Default(NormalDriver nor) {
-		nor.drive();
-	    nor.Drive();
+//	public void changeDrivingMode_Nor_Default(NormalDriver nor) {
+//		nor.drive();
+//	    nor.Drive();
+//	}
+//	
+//	public void changeDrivingMode_Nor_Safe(NormalDriver nor) {
+//		nor.drive();
+//	    nor.Drive_Safe();
+//	}
+//	
+//	public void changeDrivingMode_Nor_Racer(NormalDriver nor) {
+//		nor.drive();
+//		nor.Drive_Racer();
+//	}
+//	
+//	public void changeDrivingMode_Irr_Default(IrritableDriver irr) {}
+//	
+//	public void changeDrivingMode_Irr_Safe(IrritableDriver irr) {}
+//	
+//	public void changeDrivingMode_Irr_Racer(IrritableDriver irr) {}
+	
+	public void changeDrivingMode_Irr(int code, IrritableDriver irr) {
+		//keep empty
 	}
 	
-	public void changeDrivingMode_Nor_Safe(NormalDriver nor) {
-		nor.drive();
-	    nor.Drive_Safe();
+	public void changeDrivingMode_Nor(int code, NormalDriver nor) {
+		if(code == 1)//DefaultMode
+		{	    
+		    nor.drive();
+		    nor.Drive();	
+		}
+		else if(code == 2)//SafeMode
+		{
+		    nor.drive();
+		    nor.Drive_Safe();
+			
+		}
+		else if(code == 3)//RacerMode
+		{
+			nor.drive();
+			nor.Drive_Racer();
+		}
 	}
 	
-	public void changeDrivingMode_Nor_Racer(NormalDriver nor) {
-		nor.drive();
-		nor.Drive_Racer();
-	}
 	
-	public void changeDrivingMode_Irr_Default(IrritableDriver irr) {}
 	
-	public void changeDrivingMode_Irr_Safe(IrritableDriver irr) {}
 	
-	public void changeDrivingMode_Irr_Racer(IrritableDriver irr) {}
 }
 	
 	
