@@ -1,6 +1,7 @@
 package Driver;
 
 import CollisionDetection.CollisionDetection;
+import Strategy.*;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
 
@@ -96,24 +97,30 @@ public class NormalDriver extends Driver{
 		t.setMessage("Driver");
 		while(!super.is_Collision)
 		{	
-			if(super.mode_code == 1)
+			t.start();
+			if(super.mode_code == 1)//DefaultMode
 			{
-				t.start();    
-			    this.drive();
-			    this.Drive();
+				//t.start();    
+//			    this.drive();
+//			    this.Drive();
+				DrivingMode_NormalDriver dmd = new DrivingMode_NormalDriver();
+				dmd.changeDrivingMode_Nor_Default(this);
 			}
-			else if(super.mode_code == 2)
+			else if(super.mode_code == 2)//SafeMode
 			{
-				t.start();    
-			    this.drive();
-			    this.Drive_Safe();
-				
+				//t.start();    
+//			    this.drive();
+//			    this.Drive_Safe();
+				DrivingMode_NormalDriver dmd = new DrivingMode_NormalDriver();
+				dmd.changeDrivingMode_Nor_Safe(this);
 			}
-			else if(super.mode_code == 3)
+			else if(super.mode_code == 3)//RacerMode
 			{
-				t.start();
-				this.drive();
-				this.Drive_Racer();
+				//t.start();
+//				this.drive();
+//				this.Drive_Racer();
+				DrivingMode_NormalDriver dmd = new DrivingMode_NormalDriver();
+				dmd.changeDrivingMode_Nor_Racer(this);
 			}
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{

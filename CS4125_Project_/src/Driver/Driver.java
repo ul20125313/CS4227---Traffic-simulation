@@ -9,6 +9,7 @@ public abstract class Driver implements Runnable{
     protected Vehicle vehicle;
     protected String driverTemperType;
     protected CollisionDetection c;
+    //protected static boolean is_Collision;
     protected boolean is_Collision;
     protected boolean cant_work_state;
     public static int mode_code;
@@ -24,6 +25,10 @@ public abstract class Driver implements Runnable{
 		this.cant_work_state = false;
 		this.mode_code = 1;
 			
+	}
+	
+	public boolean getIs_Collosion() {
+		return is_Collision;
 	}
 	
 	public static void setCode_1()

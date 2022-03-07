@@ -1,6 +1,7 @@
 package Strategy;
 
-public class DrivingMode_Default implements Strategy{//Set the default speed for all four vehicles
+
+public class DrivingMode_Default {//Set the default speed for all four vehicles
 	
 	private double FerrariSpeed_Default;
 	private double BenzSpeed_Default;
@@ -55,10 +56,19 @@ public class DrivingMode_Default implements Strategy{//Set the default speed for
 	public double getV8Engine() {
 		return this.V8Engine_Default;
 	}
-	@Override
-	public void changeDrivingMode_Irr() {}
-	
-	public void changeDrivingMode_Nor() {}
+//	@Override
+//	
+//	public void changeDrivingMode_Irr_Default(int code, IrritableDriver irr) {}
+//	
+//	public void changeDrivingMode_Irr_Safe(int code, IrritableDriver irr) {}
+//	
+//	public void changeDrivingMode_Irr_Racer(int code, IrritableDriver irr) {}
+//	
+//	public void changeDrivingMode_Nor_Default(int code, NormalDriver nor) {}
+//	
+//	public void changeDrivingMode_Nor_Safe(int code, NormalDriver nor) {}
+//	
+//	public void changeDrivingMode_Nor_Racer(int code, NormalDriver nor) {}
 
 }
 

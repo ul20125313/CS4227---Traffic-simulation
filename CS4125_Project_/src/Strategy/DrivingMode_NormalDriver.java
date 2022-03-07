@@ -2,19 +2,29 @@ package Strategy;
 
 import Driver.*;
 
-public class DrivingMode_Racer implements Strategy{
-	//
+public class DrivingMode_NormalDriver implements Strategy{
 	
-	@Override
-	public void changeDrivingMode_Irr() {
-		IrritableDriver irr = new IrritableDriver();
-		irr.Drive_Racer();
+	public void changeDrivingMode_Nor_Default(NormalDriver nor) {
+		nor.drive();
+	    nor.Drive();
 	}
 	
-	public void changeDrivingMode_Nor() {
-		NormalDriver nor = new NormalDriver();
+	public void changeDrivingMode_Nor_Safe(NormalDriver nor) {
+		nor.drive();
+	    nor.Drive_Safe();
+	}
+	
+	public void changeDrivingMode_Nor_Racer(NormalDriver nor) {
+		nor.drive();
 		nor.Drive_Racer();
 	}
+	
+	public void changeDrivingMode_Irr_Default(IrritableDriver irr) {}
+	
+	public void changeDrivingMode_Irr_Safe(IrritableDriver irr) {}
+	
+	public void changeDrivingMode_Irr_Racer(IrritableDriver irr) {}
+}
 	
 	
 	
@@ -104,5 +114,5 @@ public class DrivingMode_Racer implements Strategy{
 	
 	
 	
-}
+
 

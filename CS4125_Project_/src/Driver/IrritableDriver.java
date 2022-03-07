@@ -6,6 +6,7 @@ package Driver;
 import CollisionDetection.CollisionDetection;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
+import Strategy.*;
 
 
 public class IrritableDriver extends Driver {// the irriable driver extends the driver class
@@ -59,7 +60,6 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 	
 	public void Drive_Safe() {//取消加速度和减速度，匀速行驶
 		currentspeed = vehicle.getSpeed();
-		
 	}
 	
 	public void Drive_Racer() {// 取消减速度，提高加速度，让车保持加速行驶
@@ -91,24 +91,31 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 		
 		while(!super.is_Collision)
 		{
-			if(super.mode_code == 1)
+			t.start();
+			if(super.mode_code == 1)//DefaultMode
 			{
-				t.start();    
-			    this.drive();
-			    this.Drive();
+				//t.start();    
+//			    this.drive();
+//			    this.Drive();
+				DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver();
+				did.changeDrivingMode_Irr_Default(this);
 			}
-			else if(super.mode_code == 2)
+			else if(super.mode_code == 2)//SafeMode
 			{
-				t.start();    
-			    this.drive();
-			    this.Drive_Safe();
+				//t.start();    
+//			    this.drive();
+//			    this.Drive_Safe();
+				DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver();
+				did.changeDrivingMode_Irr_Safe(this);
+			}
+			else if(super.mode_code == 3)//RacerMode
+			{
+				//t.start();
+//				this.drive();
+//				this.Drive_Racer();
+				DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver();
+				did.changeDrivingMode_Irr_Racer(this);
 				
-			}
-			else if(super.mode_code == 3)
-			{
-				t.start();
-				this.drive();
-				this.Drive_Racer();
 			}
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{
