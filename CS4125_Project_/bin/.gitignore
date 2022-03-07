@@ -5,7 +5,8 @@
 /Observer/
 /Road/
 /Simulation_Control/
+/Strategy/
 /Thread/
 /Vehicle/
 /module-info.class
-/Strategy/
+/Builder/
