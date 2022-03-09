@@ -8,8 +8,7 @@ public class Man_made_chair extends Chair{
 	public Man_made_chair() 
 	{
 		setAttribute();
-
-		
+	
 	}
 
 	

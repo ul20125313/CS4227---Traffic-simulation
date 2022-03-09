@@ -1,4 +1,4 @@
-package Builder;
+           package Builder;
 
 public class FOCAL extends Sterieo{
 	private double SoundQuality;

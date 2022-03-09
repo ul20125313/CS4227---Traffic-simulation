@@ -256,7 +256,7 @@ public class Sim_Controller extends Thread_source{
 	
 	public void begin()
 	{
-		boolean driver_has_enough_money = true;
+		//boolean driver_has_enough_money = true;
 		CHYPayment chypay = new CHYPayment();
 		for(Driver d : drivers)//every driver is thread, so here, it starts every thread
 		{

@@ -12,7 +12,7 @@ public class Leather_chair extends Chair{
 	
 	private void setAttribute()
 	{
-		this.seatMaterial = "Artificial leather";
+		this.seatMaterial = "leather";
 		this.Comfort = 0;
 	}
 	
