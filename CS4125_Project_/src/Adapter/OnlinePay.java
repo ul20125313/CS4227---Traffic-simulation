@@ -6,7 +6,7 @@ public class OnlinePay {
 
 	public boolean paySystem(Driver d, int ticket_fee)
 	{
-		System.out.println("this is the Online mehtod for payment\n");
+		System.out.println("this is the Online mehtod for payment");
 		if(d.getBalance() >ticket_fee)
 		{
 			return true;

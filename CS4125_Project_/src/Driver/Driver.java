@@ -50,15 +50,15 @@ public abstract class Driver implements Runnable{
 		mode_code = 3;
 	}
 	
-	public void set_cant_work_state()
-	{
-		this.cant_work_state = true;
-	}
-	
-	public boolean get_cant_work_state()
-	{
-		return this.cant_work_state;
-	}
+//	public void set_cant_work_state()
+//	{
+//		this.cant_work_state = true;
+//	}
+//	
+//	public boolean get_cant_work_state()
+//	{
+//		return this.cant_work_state;
+//	}
 	
 	public void setColl(CollisionDetection c)
 	{

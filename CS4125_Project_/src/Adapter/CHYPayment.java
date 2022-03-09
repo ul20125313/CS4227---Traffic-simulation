@@ -40,13 +40,13 @@ public class CHYPayment {
 	{
 		if(this.sp.paySystem(this.driver, this.ticket_fee))
 		{
-			System.out.println(this.driver.getName()+" has enough money, so he can drive in this road.");
+			System.out.println(this.driver.getName()+" has enough money, so he can drive in this road.\n");
 			return true;
 		}
 		
 		else 
 		{
-			System.out.println(this.driver.getName()+" doesn't have enough money, so he can't drive in this road.");
+			System.out.println(this.driver.getName()+" doesn't have enough money, so he can't drive in this road.\n");
 			this.driver.getVehilce().setPosition(this.cant_move_cars_loc);
 			return false;
 		

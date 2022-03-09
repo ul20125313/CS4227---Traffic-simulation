@@ -19,7 +19,7 @@ public class cd_Algorithm1 implements CollisionDetectionAlgorithm{
 				
 				Driver d1 = target_drivers.get(i);
 				Driver d2 = target_drivers.get(j);
-				if(d1.get_cant_work_state() == true && d2.get_cant_work_state() == true)
+				if(d1.getIs_Collosion() == true && d2.getIs_Collosion() == true)
 				{
 					continue;
 				}
@@ -31,8 +31,8 @@ public class cd_Algorithm1 implements CollisionDetectionAlgorithm{
 				if(dis<10)
 				{
 					c.if_Collision_occurs(d1,d2);
-					d1.set_cant_work_state();
-					d2.set_cant_work_state();
+//					d1.set_cant_work_state();
+//					d2.set_cant_work_state();
 				}
 				
 			}

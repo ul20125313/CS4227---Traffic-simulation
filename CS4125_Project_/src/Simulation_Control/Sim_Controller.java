@@ -9,6 +9,7 @@ import Builder.CarBuilder;
 import Builder.Exterior;
 import Builder.Interior;
 import CollisionDetection.CollisionDetection;
+import CollisionDetection.GeneralCollisionDetection;
 import CollisionDetection.cd_Algorithm1;
 import CollisionDetection.cd_Algorithm2;
 import Command.SpeedChangedKey;
@@ -41,7 +42,7 @@ public class Sim_Controller extends Thread_source{
 	private Thread_source graphics; //the Gra_Controller
 	private ArrayList<Lane> lanes;
 	private ArrayList<Driver>drivers;
-	private ArrayList<CollisionDetection>Detections;
+	private ArrayList<GeneralCollisionDetection>Detections;
 
 	private Point Firstcar_loc;
 	private Point Secondcar_loc;
@@ -60,10 +61,10 @@ public class Sim_Controller extends Thread_source{
 	
 	
 	
-	protected CollisionDetection c1;
-	protected CollisionDetection c2;
-	protected CollisionDetection c3;
-	protected CollisionDetection c4;
+	private GeneralCollisionDetection c1;
+	private GeneralCollisionDetection c2;
+	private GeneralCollisionDetection c3;
+	//protected CollisionDetectionAlgorithm c4;
 	
 	private CarBuilder cb1;
 	
@@ -344,7 +345,7 @@ public class Sim_Controller extends Thread_source{
 		    }			
 			
 		}
-		for(CollisionDetection cd :Detections)
+		for(GeneralCollisionDetection cd :Detections)
 		{
 			new Thread(cd).start();
 		}
