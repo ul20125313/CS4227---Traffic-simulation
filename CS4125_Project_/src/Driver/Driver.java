@@ -17,7 +17,10 @@ public abstract class Driver implements Runnable{
     public Driver() {}
     
 
-    
+    public void Wait() throws InterruptedException
+    {
+    	Thread.sleep(1000);
+    }
 	public Driver(String name, Vehicle vehicle, String driverTemperType, int balance)//the constructor of class driver
 	{
 		this.name = name;

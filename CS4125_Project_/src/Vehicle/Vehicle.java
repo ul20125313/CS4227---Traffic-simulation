@@ -39,6 +39,11 @@ public class Vehicle {
 		this.angular_speed = angular_speed;
 		this.circle_angle = circle_angle;
 	}
+	
+	public void setSpeedtoZero()
+	{
+		this.angular_speed = 0;
+	}
 
 
 	public Vehicle(double angle, Point xy, Lane track, VehicleEngineDecorator veEngineDec) {//constructor function

@@ -17,6 +17,7 @@ public class NormalDriver extends Driver{
 	
 	public NormalDriver() {}
 
+	
 	public NormalDriver(String name, Vehicle vehicle, String driverTemperType, int balance) {
 		super(name, vehicle, driverTemperType, balance);
 //		this.DriverTemperType = "Normal";
@@ -67,6 +68,7 @@ public class NormalDriver extends Driver{
 			if(currentspeed <= min_limitedSpeed)
 				isDecelerate = false;
 		}
+		
 	}
 	
 	public void Drive_Racer() {// 取消减速度，提高加速度，让车保持加速行驶

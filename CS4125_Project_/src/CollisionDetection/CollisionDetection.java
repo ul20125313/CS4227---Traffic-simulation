@@ -20,11 +20,11 @@ public class CollisionDetection extends GeneralCollisionDetection  {
 //		this.target_drivers = new ArrayList<>();
 //		this.a = a;
 //	}
-	public void set_my_loc(double x, double y)
-	{
-		this.my_x = x;
-		this.my_y =y;
-	}
+//	public void set_my_loc(double x, double y)
+//	{
+//		this.my_x = x;
+//		this.my_y =y;
+//	}
 	public void addTargetDriver(Driver d)
 	{
 		super.target_drivers.add(d);
@@ -75,6 +75,7 @@ public class CollisionDetection extends GeneralCollisionDetection  {
 	{
 		System.out.println("collision occurs caused by "+d1.getName() + " and "+ d2.getName());
 		d1.driver_cant_work();
+		d1.getVehilce().setSpeedtoZero();
 		d2.driver_cant_work();
 		
 	}

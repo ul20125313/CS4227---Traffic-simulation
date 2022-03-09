@@ -36,7 +36,7 @@ public class CHYPayment {
 
 	}
 	
-	public boolean check_whether_can_afford() 
+	public boolean check_whether_can_afford()
 	{
 		if(this.sp.paySystem(this.driver, this.ticket_fee))
 		{
@@ -48,6 +48,7 @@ public class CHYPayment {
 		{
 			System.out.println(this.driver.getName()+" doesn't have enough money, so he can't drive in this road.\n");
 			this.driver.getVehilce().setPosition(this.cant_move_cars_loc);
+			//this.driver.Wait();
 			return false;
 		
 		}
