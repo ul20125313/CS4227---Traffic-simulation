@@ -59,12 +59,12 @@ public class Lane1 extends Lane{
 		return lane_Color;
 	}
 	
-	public Point get_Position(int cell_index)// need to be modified
-	{
-		Point p = new Point();
-		return p;
-	
-	}
+//	public Point get_Position(int cell_index)// need to be modified
+//	{
+//		Point p = new Point();
+//		return p;
+//	
+//	}
 	@Override
 	public int get_Radius() {
 		// TODO Auto-generated method stub

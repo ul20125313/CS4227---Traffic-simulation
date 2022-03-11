@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 import Driver.Driver;
 
-public class cd_Algorithm2 implements CollisionDetectionAlgorithm{
+public class DetectionMethod_v2 implements DetectionMethod{
 
 	private int model_width;
 	private int model_height;
-	public cd_Algorithm2()
+	public DetectionMethod_v2()
 	{
 		this.model_width = 10;
 		this.model_height = 10;
 	}
 	@Override
-	public void detectCollision(ArrayList<Driver>target_drivers, CollisionDetection c) 
+	public void detectCollision(ArrayList<Driver>target_drivers, CollisionMonitor c) 
 	{
 		// TODO Auto-generated method stub
 		for(int i=0;i<target_drivers.size();i++)
@@ -27,7 +27,7 @@ public class cd_Algorithm2 implements CollisionDetectionAlgorithm{
 				{
 					continue;
 				}
-				if(Is_Collision(d1,d2))
+				if(Wether_Collision(d1,d2))
 				{
 					c.if_Collision_occurs(d1,d2);
 //					d1.set_cant_work_state();
@@ -38,7 +38,14 @@ public class cd_Algorithm2 implements CollisionDetectionAlgorithm{
 		
 		
 	}
-	public boolean Is_Collision(Driver d1, Driver d2)
+	
+	@Override
+	public void detect_whether_Overtake(ArrayList<Driver> target_drivers, OvertakeMonitor c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean Wether_Collision(Driver d1, Driver d2)
 	{
 		double t1_car_right;
 		double t1_car_left;
@@ -106,7 +113,7 @@ public class cd_Algorithm2 implements CollisionDetectionAlgorithm{
 		}
 		return false;
 	}
-
+	
 	
 
 }

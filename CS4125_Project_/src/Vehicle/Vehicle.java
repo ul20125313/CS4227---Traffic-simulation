@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Road.Lane;
+import Simulation_Control.Sim_Controller;
 
 
 public class Vehicle {
@@ -40,7 +41,7 @@ public class Vehicle {
 		this.circle_angle = circle_angle;
 	}
 	
-	public void setSpeedtoZero()
+	public void Damage()
 	{
 		this.angular_speed = 0;
 	}
@@ -67,9 +68,10 @@ public class Vehicle {
 		
 	}
 
-	public void setPosition(Point p)
+	public void setPosition(int x, int y)
 	{
-		this.position = p;
+		this.position.x = x;
+		this.position.y = y;
 	}
 	public void computeExistAngle()
 	{
@@ -100,6 +102,80 @@ public class Vehicle {
 		
 	}
 
+	
+	public void turn_to_outside_lane()
+	{
+		double new_x = 0;
+		double new_y = 0;
+		
+	
+		try
+		{
+			if(this.position.getX() > 500)
+			{
+				new_x = this.position.getX() + Math.abs(this.position.getX() - 500)/(this.track.getLaneNumber() - 1);
+			}
+			else 
+			{
+				new_x = this.position.getX() - Math.abs(this.position.getX() - 500)/(this.track.getLaneNumber() - 1);
+			}
+			if(this.position.getY()>303)
+			{
+				new_y = this.position.getY() + Math.abs(this.position.getY() - 303)/(this.track.getLaneNumber() - 1);
+			}
+			else
+			{
+				new_y = this.position.getY() - Math.abs(this.position.getY() - 303)/(this.track.getLaneNumber() - 1);
+				
+			}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("Cant divide by zero!");
+		}
+		this.setLane(Sim_Controller.getLane(this.getLane().getLaneNumber()+1));
+		this.setPosition((int)new_x,(int)new_y);
+		
+		
+	}
+	
+	public void turn_to_inside_lane()
+	{
+		double new_x = 0;
+		double new_y = 0;
+		
+	
+		try
+		{
+			if(this.position.getX() > 500)
+			{
+				new_x = this.position.getX() - Math.abs(this.position.getX() - 500)/(this.track.getLaneNumber() - 1);
+			}
+			else 
+			{
+				new_x = this.position.getX() + Math.abs(this.position.getX() - 500)/(this.track.getLaneNumber() - 1);
+			}
+			if(this.position.getY()>303)
+			{
+				new_y = this.position.getY() - Math.abs(this.position.getY() - 303)/(this.track.getLaneNumber() - 1);
+			}
+			else
+			{
+				new_y = this.position.getY() + Math.abs(this.position.getY() - 303)/(this.track.getLaneNumber() - 1);
+				
+			}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("Cant divide by zero!");
+		}
+		
+		this.setLane(Sim_Controller.getLane(this.getLane().getLaneNumber()-1));
+		this.setPosition((int)new_x,(int)new_y);
+	}
+	
 	public void speed_increase() {
 		this.angular_speed = this.angular_speed + this.acceleration; // if the speed increases, the speed will plus acceleration
 	}
@@ -146,6 +222,10 @@ public class Vehicle {
 		return angle;
 	}
 
+	public void setLane(Lane l)
+	{
+		this.track = l;
+	}
 	public Lane getLane() {
 		return track;
 	}

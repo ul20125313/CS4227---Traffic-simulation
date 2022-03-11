@@ -72,14 +72,10 @@ public class Lane4 extends Lane{
 		return lane_Color;
 	}
 
-	@Override
-	public Point get_Position(int cell_index) {
-		// TODO Auto-generated method stub
-		Point p = new Point();
-		return p;
-	}
+	
 
-	@Override
+
+	
 	public int get_Radius() {
 		// TODO Auto-generated method stub
 		return radius;

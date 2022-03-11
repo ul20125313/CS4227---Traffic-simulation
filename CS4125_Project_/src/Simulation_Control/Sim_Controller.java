@@ -8,10 +8,11 @@ import Adapter.CHYPayment;
 import Builder.CarBuilder;
 import Builder.Exterior;
 import Builder.Interior;
-import CollisionDetection.CollisionDetection;
-import CollisionDetection.GeneralCollisionDetection;
-import CollisionDetection.cd_Algorithm1;
-import CollisionDetection.cd_Algorithm2;
+import CollisionDetection.CollisionMonitor;
+import CollisionDetection.Monitor;
+import CollisionDetection.OvertakeMonitor;
+import CollisionDetection.DetectionMethod_v1;
+import CollisionDetection.DetectionMethod_v2;
 import Command.SpeedChangedKey;
 import Command.VehicleAccelerationCommand;
 import Command.VehicleDecelerationCommand;
@@ -40,9 +41,9 @@ import Simulation_Control.Thread_source;
 public class Sim_Controller extends Thread_source{
 	private double map_wi, map_he;
 	private Thread_source graphics; //the Gra_Controller
-	private ArrayList<Lane> lanes;
+	private static ArrayList<Lane> lanes;
 	private ArrayList<Driver>drivers;
-	private ArrayList<GeneralCollisionDetection>Detections;
+	private static ArrayList<Monitor>Monitors;
 
 	private Point Firstcar_loc;
 	private Point Secondcar_loc;
@@ -61,9 +62,12 @@ public class Sim_Controller extends Thread_source{
 	
 	
 	
-	private GeneralCollisionDetection c1;
-	private GeneralCollisionDetection c2;
-	private GeneralCollisionDetection c3;
+	private static Monitor c2;
+	private static Monitor c3;
+	private static Monitor c4;
+	private static Monitor o2;
+	private static Monitor o3;
+	private static Monitor o4;
 	//protected CollisionDetectionAlgorithm c4;
 	
 	private CarBuilder cb1;
@@ -77,19 +81,21 @@ public class Sim_Controller extends Thread_source{
 		this.showCheapCar_Parts();
 	
 		this.drivers = new ArrayList<>();
-		this.Detections = new ArrayList<>();
+		this.Monitors = new ArrayList<>();
 		System.out.println("[Sim_Control]");
 		System.out.println("----------------------------");
 		this.map_wi = 1000;
 		this.map_he = 606; // need change
 		this.init_lanes();
 		
-		this.create_Driver();
+		this.create_Drivers();
+		this.init_Monitor();
 		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes, this);
 		this.speedchanged_key = new SpeedChangedKey(jf);
 		
 		
 	}
+	
 	public void showCheapCar_Parts()
 	{
 		
@@ -116,7 +122,7 @@ public class Sim_Controller extends Thread_source{
 		this.jf = jf;
 	}
 	
-	public void create_Driver()
+	public void create_Drivers()
 	{
 		VehicleTypeFactory v_fac = new VehicleTypeFactory();
 		VehicleType Ferrari = v_fac.createVehicle(VehicleTypeFactory.Vehicle_Type.Ferrari);	// the factory will return the corresponding instance
@@ -140,9 +146,9 @@ public class Sim_Controller extends Thread_source{
 		this.Seventhcar_loc = new Point((728),(303));
 	
 		
-		this.c1= new CollisionDetection(new cd_Algorithm1());
-		this.c2= new CollisionDetection( new cd_Algorithm1());
-		this.c3 = new CollisionDetection( new cd_Algorithm2());
+		this.c2= new CollisionMonitor(new DetectionMethod_v1());
+		this.c3= new CollisionMonitor( new DetectionMethod_v1());
+		this.c4 = new CollisionMonitor( new DetectionMethod_v1());
 		
 		DriverFactory d_fac = new DriverFactory();
 		// the code fragment below will distribute temper to every driver randomly.
@@ -151,107 +157,189 @@ public class Sim_Controller extends Thread_source{
 		if(DriverTemperJudge == 0) {
 			Driver Drive1 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Firstcar_loc, this.lanes.get(0), v8EngineCar), "J.J", "Normal", 8);
 			this.drivers.add(Drive1);
-			this.c1.addTargetDriver(Drive1);
+			
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive1 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Firstcar_loc, this.lanes.get(0), v8EngineCar), "J.J", "Irritable", 8);
 			this.drivers.add(Drive1);
-			this.c1.addTargetDriver(Drive1);
+			
 		}
 		DriverTemperJudge = (int)(Math.random()*2);
 		if(DriverTemperJudge == 0) {
 			Driver Drive2 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Secondcar_loc, this.lanes.get(1), v6EngineCar), "Sam", "Normal", 8);
 			this.drivers.add(Drive2);
-			this.c2.addTargetDriver(Drive2);
+		
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive2 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Secondcar_loc, this.lanes.get(1), v6EngineCar), "Sam", "Irritable", 8);
 			this.drivers.add(Drive2);
-			this.c2.addTargetDriver(Drive2);
+		
 		}
 		DriverTemperJudge = (int)(Math.random()*2);
 		if(DriverTemperJudge == 0) {
 			Driver Drive3 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Thirdcar_loc, this.lanes.get(2), v4EngineCar), "Tom", "Normal", 8);
 			this.drivers.add(Drive3);
-			this.c3.addTargetDriver(Drive3);
+		
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive3 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Thirdcar_loc, this.lanes.get(2), v4EngineCar), "Tom", "Irritable", 8);
 			this.drivers.add(Drive3);
-			this.c3.addTargetDriver(Drive3);
+			
 		}
 		DriverTemperJudge = (int)(Math.random()*2);
 		if(DriverTemperJudge == 0) {
 			Driver Drive4 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Fourthcar_loc, this.lanes.get(0), v3EngineCar), "Jack", "Normal", 8);
 			this.drivers.add(Drive4);
-			this.c1.addTargetDriver(Drive4);
+			
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive4 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Fourthcar_loc, this.lanes.get(0), v3EngineCar), "Jack", "Irritable", 8);
 			this.drivers.add(Drive4);
-			this.c1.addTargetDriver(Drive4);
+			
 		}
 
 		if(DriverTemperJudge == 0) {
 			Driver Drive5 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Fifthcar_loc, this.lanes.get(1), v3EngineCar), "Jim", "Normal", 1);
 			this.drivers.add(Drive5);
-			this.c2.addTargetDriver(Drive5);
+			
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive5 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Fifthcar_loc, this.lanes.get(1), v3EngineCar), "Jim", "Irritable", 1);
 			this.drivers.add(Drive5);
-			this.c2.addTargetDriver(Drive5);
+		
 
 		}	
 		if(DriverTemperJudge == 0) {
 			Driver Drive6 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Sixthcar_loc, this.lanes.get(2), v3EngineCar), "Nik", "Normal", 8);
 			this.drivers.add(Drive6);
-			this.c3.addTargetDriver(Drive6);
+			
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive6 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Sixthcar_loc, this.lanes.get(2), v3EngineCar), "Nik", "Irritable", 8);
 			this.drivers.add(Drive6);
-			this.c3.addTargetDriver(Drive6);
+			
 		}	
 		if(DriverTemperJudge == 0) {
 			Driver Drive7 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL, new Vehicle(3, this.Seventhcar_loc, this.lanes.get(2), v4EngineCar), "Dan", "Normal", 8);
 			this.drivers.add(Drive7);
-			this.c3.addTargetDriver(Drive7);
+			
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive7 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, new Vehicle(3, this.Seventhcar_loc, this.lanes.get(2), v4EngineCar), "Dan", "Irritable", 8);
 			this.drivers.add(Drive7);
-			this.c3.addTargetDriver(Drive7);
+	
 
 		}
-		this.Detections.add(c1);
-		this.Detections.add(c2);
-		this.Detections.add(c3);
-		
-		
+
 
 	}
+	public void init_Monitor()
+	{
+		c2= new CollisionMonitor(new DetectionMethod_v1());
+		c3= new CollisionMonitor( new DetectionMethod_v1());
+		c4 = new CollisionMonitor( new DetectionMethod_v1());
+		
+		o2= new OvertakeMonitor(new DetectionMethod_v1());
+		o3= new OvertakeMonitor( new DetectionMethod_v1());
+		o4 = new OvertakeMonitor( new DetectionMethod_v1());
+		
+		for(Driver d : drivers)
+		{
+			switch(d.getVehilce().getLane().getLaneNumber())
+			{
+			case(4):
+				c4.addTargetDriver(d);
+			o4.addTargetDriver(d);
+
+			break;
+			case(3):
+				c3.addTargetDriver(d);
+			o3.addTargetDriver(d);
+
+			break;
+			case(2):
+				c2.addTargetDriver(d);
+			o2.addTargetDriver(d);
+
+			break;
+			default:
+				System.out.println("Some vehicles appear in the unknown track.");
+			}
+			
+		}
+		Monitors.add(c2);
+		Monitors.add(c3);
+		Monitors.add(c4);	
+		Monitors.add(o2);
+		Monitors.add(o3);
+		Monitors.add(o4);
+	}
+	
+	public static void update_monitor(Driver d, int index)
+	{
+		switch(index)
+		{
+		case(4):
+		{
+			c4.addTargetDriver(d);
+			break;
+		}
+		case(3):
+		{
+			c3.addTargetDriver(d);
+			break;
+		}
+		case(2):
+		{
+			c2.addTargetDriver(d);
+			break;
+		}
+		default:
+			System.out.println("input the wrong lane_index");
+		
+		}
+	
+	}
+
 	
 	public void init_lanes()
 	{
 		//create the arraylist for lanes
-		this.lanes = new ArrayList<>();		
+		lanes = new ArrayList<>();		
 		Lane1 lane1 = new Lane1();//will use the arraylist
-		lane1.setLaneNumber(1);
-		this.lanes.add(lane1);
+		lane1.setLaneNumber(4);
+		lanes.add(lane1);
 		
 		Lane2 lane2 = new Lane2();//will use the arraylist  
-		this.lanes.add(lane2);
-		lane2.setLaneNumber(2);
+		lanes.add(lane2);
+		lane2.setLaneNumber(3);
 		
 		Lane3 lane3 = new Lane3();
-		this.lanes.add(lane3);
-		lane3.setLaneNumber(3);
+		lanes.add(lane3);
+		lane3.setLaneNumber(2);
 		
 		Lane4 lane4 = new Lane4();
-		this.lanes.add(lane4);
-		lane4.setLaneNumber(4);
+		lanes.add(lane4);
+		lane4.setLaneNumber(1);
 		 
+	}
+	public static Lane getLane(int index)
+	{
+		switch(index)
+		{
+		case(1):
+			return lanes.get(3);
+		case(2):
+			return lanes.get(2);
+		case(3):
+			return lanes.get(1);
+		case(4):
+			return lanes.get(0);
+		default:
+			System.out.println("no lane");
+		
+		}
+		return null;
 	}
 	
 	public void begin()
@@ -266,91 +354,38 @@ public class Sim_Controller extends Thread_source{
 			{
 				continue;
 			}
+			
 			if(d.getName().equals("J.J")) {
-				this.speedchanged_key.setDriver(d);
-				
+				this.speedchanged_key.setDriver(d);		
 				this.vehicleAccelerationCommand = new VehicleAccelerationCommand(d);
 				this.speedchanged_key.getvehicleAccelerationCommand(vehicleAccelerationCommand);
 				this.vehicleDecelerationCommand = new VehicleDecelerationCommand(d);
-				this.speedchanged_key.getvehicleDecelerationCommand(vehicleDecelerationCommand);
-				
+				this.speedchanged_key.getvehicleDecelerationCommand(vehicleDecelerationCommand);			
 				this.speedchanged_key.setKeyEvent();
 			}
+			
 			if(d.getClass().toString().equals("class Driver.NormalDriver")) 
 			{
-//				if(d.getVehilce().getLane().getLaneNumber() == 1)
-//				{
-//					if(!this.c1.getTargetDriver().getName().equals(d.getName()))
-//					{
-//						
-//						d.setColl(this.c1);
-//					}
-//					
-//				}
-//				else if(d.getVehilce().getLane().getLaneNumber() == 2)
-//				{
-//					if(!this.c2.getTargetDriver().getName().equals(d.getName()))
-//					{
-//						d.setColl(this.c2);//detectcollision
-//					}
-//					
-//				}
-//				else if(d.getVehilce().getLane().getLaneNumber() == 3)
-//				{
-//					if(!this.c3.getTargetDriver().getName().equals(d.getName()))
-//					{
-//						System.out.println(d.getName());
-//						d.setColl(this.c3);
-//					}
-//					
-//				}
 
 				NormalDriver NormalDriver = (NormalDriver)d;//downward transition, convert driver class to normalDriver class
 				new Thread(NormalDriver).start();		
 		    }
 			
 		     else if(d.getClass().toString().equals("class Driver.IrritableDriver")) 
-		    {
-		    
-//		    	 if(d.getVehilce().getLane().getLaneNumber() == 1)
-//		    	 {
-//		    		 if(!this.c1.getTargetDriver().getName().equals(d.getName()))
-//		    		 {
-//		    			 System.out.println(d.getName());
-//		    			 d.setColl(this.c1);
-//		    		 }
-//					
-//		    	 }
-//		    	 else if(d.getVehilce().getLane().getLaneNumber() == 2)
-//		    	 {
-//						if(!this.c2.getTargetDriver().getName().equals(d.getName()))
-//						{						
-//							d.setColl(this.c2);
-//						}
-//						
-//				}
-//		    	 else if(d.getVehilce().getLane().getLaneNumber() == 3)
-//					{
-//						if(!this.c3.getTargetDriver().getName().equals(d.getName()))
-//						{
-//							System.out.println(d.getName());
-//							d.setColl(this.c3);
-//						}
-//						
-//					}
+		    {		    
 		    	 
 		    	 IrritableDriver IrritableDriver = (IrritableDriver)d;//downward transition, convert driver class to irritableDriver class
 		    	 new Thread(IrritableDriver).start();
-
 		    }			
 			
 		}
-		for(GeneralCollisionDetection cd :Detections)
+		
+		for(Monitor cd :Monitors)
 		{
 			new Thread(cd).start();
 		}
-	
-		graphics.run();
+	    graphics.run();
+		
 		
 	}
 	

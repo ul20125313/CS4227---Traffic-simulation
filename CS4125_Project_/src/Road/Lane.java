@@ -20,7 +20,7 @@ public abstract class Lane {// an abstract class will be extended by 4 lane clas
 	
 	public abstract Color getLaneColor();
 	
-	public abstract Point get_Position(int cell_index);
+	
 	
 	public abstract int get_Radius();
 	

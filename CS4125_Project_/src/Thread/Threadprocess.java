@@ -38,7 +38,7 @@ public class Threadprocess {
 	public void end() //set the s_time and compute the duration
 	{
 		this.e_time = System.nanoTime();
-		this.duration = (this.e_time - this.s_time) / 1000000;
+		this.duration = (this.e_time - this.s_time) / 100000000;
 		this.sleep();// when one thread complete one atomic task, it will start sleeping to let other thread start working
 	}
 	

@@ -47,7 +47,7 @@ public class CHYPayment {
 		else 
 		{
 			System.out.println(this.driver.getName()+" doesn't have enough money, so he can't drive in this road.\n");
-			this.driver.getVehilce().setPosition(this.cant_move_cars_loc);
+			this.driver.getVehilce().setPosition((int)this.cant_move_cars_loc.getX(),(int)this.cant_move_cars_loc.getY());
 			//this.driver.Wait();
 			return false;
 		

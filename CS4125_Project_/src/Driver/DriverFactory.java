@@ -1,7 +1,7 @@
 package Driver;
 
 
-import CollisionDetection.CollisionDetection;
+import CollisionDetection.CollisionMonitor;
 import Vehicle.Vehicle;
 //this class takes use of the factory pattern
 public class DriverFactory  {

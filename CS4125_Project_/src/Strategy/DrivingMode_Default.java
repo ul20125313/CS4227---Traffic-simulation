@@ -14,10 +14,10 @@ public class DrivingMode_Default {//Set the default speed for all four vehicles
 	
 	public DrivingMode_Default() {
 		// Set the default initial speed of the four vehicles
-		this.FerrariSpeed_Default = 1;
-		this.BenzSpeed_Default = 0.5;
-		this.MazdaSpeed_Default = 0.3;
-		this.SantanaSpeed_Default = 0.2;
+		this.FerrariSpeed_Default = 0.5;
+		this.BenzSpeed_Default = 0.3;
+		this.MazdaSpeed_Default = 0.2;
+		this.SantanaSpeed_Default = 0.1;
 		// Set the default acceleration for the four engines
 		this.V3Engine_Default = 0.0014;
 		this.V4Engine_Default = 0.002;

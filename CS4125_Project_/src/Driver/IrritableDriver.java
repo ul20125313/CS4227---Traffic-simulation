@@ -3,7 +3,7 @@
  */
 package Driver;
 
-import CollisionDetection.CollisionDetection;
+import CollisionDetection.CollisionMonitor;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
 import Strategy.*;

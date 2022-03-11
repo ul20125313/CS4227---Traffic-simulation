@@ -1,5 +1,5 @@
 package Driver;
-import CollisionDetection.CollisionDetection;
+import CollisionDetection.CollisionMonitor;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
 
@@ -8,19 +8,17 @@ public abstract class Driver implements Runnable{
 	private String name;
     protected Vehicle vehicle;
     protected String driverTemperType;
-    protected CollisionDetection c;
+    protected CollisionMonitor c;
     //protected static boolean is_Collision;
     protected boolean is_Collision;
     protected boolean cant_work_state;
     public static int mode_code;
     protected int balance;
+    private int col;
     public Driver() {}
     
 
-    public void Wait() throws InterruptedException
-    {
-    	Thread.sleep(1000);
-    }
+ 
 	public Driver(String name, Vehicle vehicle, String driverTemperType, int balance)//the constructor of class driver
 	{
 		this.name = name;
@@ -29,9 +27,10 @@ public abstract class Driver implements Runnable{
 		this.is_Collision = false;
 		this.cant_work_state = false;
 		this.mode_code = 1;
-		this.balance = balance;
-			
+		this.balance = balance;	
+		this.col = 0;
 	}
+
 	public int getBalance()
 	{
 		return this.balance;
@@ -52,18 +51,8 @@ public abstract class Driver implements Runnable{
 	{
 		mode_code = 3;
 	}
-	
-//	public void set_cant_work_state()
-//	{
-//		this.cant_work_state = true;
-//	}
-//	
-//	public boolean get_cant_work_state()
-//	{
-//		return this.cant_work_state;
-//	}
-	
-	public void setColl(CollisionDetection c)
+
+	public void setColl(CollisionMonitor c)
 	{
 		this.c = c;
 	}
@@ -93,6 +82,18 @@ public abstract class Driver implements Runnable{
 	
 	public void pri() {
 		
+	}
+	
+	public void stop()
+	{
+		try
+		{
+			Thread.sleep(1000);
+		}
+		catch(Exception e)
+		{
+			System.out.print("error for driver stop");
+		}
 	}
 	
 	public void Drive() {
