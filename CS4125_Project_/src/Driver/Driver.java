@@ -52,10 +52,7 @@ public abstract class Driver implements Runnable{
 		mode_code = 3;
 	}
 
-	public void setColl(CollisionMonitor c)
-	{
-		this.c = c;
-	}
+
 	public String getName()// return the name
 	{
 		return this.name;
@@ -84,17 +81,7 @@ public abstract class Driver implements Runnable{
 		
 	}
 	
-	public void stop()
-	{
-		try
-		{
-			Thread.sleep(1000);
-		}
-		catch(Exception e)
-		{
-			System.out.print("error for driver stop");
-		}
-	}
+	
 	
 	public void Drive() {
 		
