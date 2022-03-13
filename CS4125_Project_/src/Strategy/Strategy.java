@@ -16,8 +16,10 @@ public interface Strategy {
 //	
 //	public void changeDrivingMode_Nor_Racer(NormalDriver nor);
 	
-	public void changeDrivingMode_Irr(int code, IrritableDriver irr);
+//	public void changeDrivingMode_Irr(int code, IrritableDriver irr);
+//	
+//	public void changeDrivingMode_Nor(int code, NormalDriver nor);
 	
-	public void changeDrivingMode_Nor(int code, NormalDriver nor);
+	public void changeDrivingMode(int code, Driver dri);
 
 }

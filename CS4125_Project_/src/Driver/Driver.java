@@ -91,6 +91,14 @@ public abstract class Driver implements Runnable{
 	{
 		this.is_Collision = true;
 	}
+	
+	public void Drive_Safe() {
+		
+	}
+	
+	public void Drive_Racer() {// 取消减速度，提高加速度，让车保持加速行驶
+	
+	}
 
 
 }

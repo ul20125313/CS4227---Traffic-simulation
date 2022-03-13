@@ -26,6 +26,7 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 //		this.DriverTemperType = "Irritable";
 		this.max_limitedSpeed = 4 * 30; // the max limit speed for iterative driver
 		this.min_limitedSpeed = 2 * 30; //the minimum of speed for iterative driver 
+		
 		//this.Drive();
 		
 		this.isDecelerate = false;
@@ -59,7 +60,11 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 	}
 	
 	public void Drive_Safe() {//取消加速度和减速度，匀速行驶
-		currentspeed = vehicle.getSpeed();
+		//currentspeed = vehicle.getSpeed();
+		double limitedconstantSpeed = 30;
+		currentspeed = vehicle.getSpeed_constantSpeed();
+		if(currentspeed >= limitedconstantSpeed)
+			currentspeed = limitedconstantSpeed;
 	}
 	
 	public void Drive_Racer() {// 取消减速度，提高加速度，让车保持加速行驶
@@ -93,7 +98,7 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 		{
 			t.start();
 			DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver(); 
-			did.changeDrivingMode_Irr(super.mode_code, this);	
+			did.changeDrivingMode(super.mode_code, this);	
 			
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{

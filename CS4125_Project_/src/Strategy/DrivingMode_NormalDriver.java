@@ -25,26 +25,23 @@ public class DrivingMode_NormalDriver implements Strategy{
 //	
 //	public void changeDrivingMode_Irr_Racer(IrritableDriver irr) {}
 	
-	public void changeDrivingMode_Irr(int code, IrritableDriver irr) {
-		//keep empty
-	}
 	
-	public void changeDrivingMode_Nor(int code, NormalDriver nor) {
+	public void changeDrivingMode(int code, Driver dri) {
 		if(code == 1)//DefaultMode
 		{	    
-		    nor.drive();
-		    nor.Drive();	
+		    dri.drive();
+		    dri.Drive();	
 		}
 		else if(code == 2)//SafeMode
 		{
-		    nor.drive();
-		    nor.Drive_Safe();
+		    dri.drive();
+		    dri.Drive_Safe();
 			
 		}
 		else if(code == 3)//RacerMode
 		{
-			nor.drive();
-			nor.Drive_Racer();
+			dri.drive();
+			dri.Drive_Racer();
 		}
 	}
 	

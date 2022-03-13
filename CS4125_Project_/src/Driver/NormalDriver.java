@@ -56,19 +56,12 @@ public class NormalDriver extends Driver{
 		}		
 	}
 	
-	public void Drive_Safe() {
-		currentspeed = vehicle.getSpeed();
-		if(!isDecelerate) {//if the speed doesn't decrease, it will start increasing
-			//super.vehicle.speed_increase();// whether the speed increases depends on whether it exceeds the maximum of speed
-			if(currentspeed >= max_limitedSpeed)
-				isDecelerate = true;
-		}
-		else if(isDecelerate) {
-			//super.vehicle.speed_decrease();// whether the speed decreases depends on whether it is below the minimum of speed
-			if(currentspeed <= min_limitedSpeed)
-				isDecelerate = false;
-		}
-		
+	public void Drive_Safe() {//取消加速度和减速度，匀速行驶
+		//currentspeed = vehicle.getSpeed();
+		double limitedconstantSpeed = 30;
+		currentspeed = vehicle.getSpeed_constantSpeed();
+		if(currentspeed >= limitedconstantSpeed)
+			currentspeed = limitedconstantSpeed;
 	}
 	
 	public void Drive_Racer() {// 取消减速度，提高加速度，让车保持加速行驶
@@ -78,11 +71,11 @@ public class NormalDriver extends Driver{
 			if(currentspeed >= max_limitedSpeed)
 				isDecelerate = true;
 		}
-		else if(isDecelerate) {
-			//super.vehicle.speed_decrease();// whether the speed decreases depends on whether it is below the minimum of speed
-			if(currentspeed <= min_limitedSpeed)
-				isDecelerate = false;
-		}
+//		else if(isDecelerate) {
+//			//super.vehicle.speed_decrease();// whether the speed decreases depends on whether it is below the minimum of speed
+//			if(currentspeed <= min_limitedSpeed)
+//				isDecelerate = false;
+//		}
 	}
 		
 	
@@ -101,7 +94,7 @@ public class NormalDriver extends Driver{
 		{	
 			t.start();
 			DrivingMode_NormalDriver dnd = new DrivingMode_NormalDriver(); 
-			dnd.changeDrivingMode_Nor(super.mode_code, this);	
+			dnd.changeDrivingMode(super.mode_code, this);	
 //			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
 //			{
 //			
