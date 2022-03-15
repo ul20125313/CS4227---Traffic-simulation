@@ -57,9 +57,9 @@ public class NormalDriver extends Driver{
 	}
 	
 	public void Drive_Safe() {//取消加速度和减速度，匀速行驶
-		//currentspeed = vehicle.getSpeed();
+		currentspeed = vehicle.getSpeed();
 		double limitedconstantSpeed = 30;
-		currentspeed = vehicle.getSpeed_constantSpeed();
+		//currentspeed = vehicle.getSpeed_constantSpeed();
 		if(currentspeed >= limitedconstantSpeed)
 			currentspeed = limitedconstantSpeed;
 	}
