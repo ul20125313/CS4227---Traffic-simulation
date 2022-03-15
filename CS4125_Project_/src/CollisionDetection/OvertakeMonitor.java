@@ -1,6 +1,7 @@
 package CollisionDetection;
 
 import Driver.Driver;
+import Simulation_Control.Sim_Controller;
 import Thread.Threadprocess;
 
 public class OvertakeMonitor extends Monitor{
@@ -21,7 +22,7 @@ public class OvertakeMonitor extends Monitor{
 	}
 	public void work()
 	{
-		super.a.detect_whether_Overtake(target_drivers, this);
+		super.a.detectOvertake(target_drivers, this);
 	}
 	
 	@Override
@@ -53,6 +54,20 @@ public class OvertakeMonitor extends Monitor{
 	
 	public void if_Overtake_occurs(Driver d1, Driver d2)
 	{
+		int old_lane_num = d1.getVehilce().getLane().getLaneNumber();
+		//System.out.println(d1.getVehilce().getLane().getLaneNumber());
+		if(d1.getVehilce().getLane().getLaneNumber()!=2)
+		{
+			d1.getVehilce().turn_to_inside_lane();
+			
+		}
+		else 
+			d1.getVehilce().turn_to_outside_lane();
+		
+		this.removeTargetDriver(d1);
+		
+		//System.out.println(d1.getName()+" "+d1.getVehilce().getLane().getLaneNumber());
+		Sim_Controller.update_monitor(d1, d1.getVehilce().getLane().getLaneNumber(),old_lane_num);
 		
 	}
 

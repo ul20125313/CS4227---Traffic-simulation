@@ -56,6 +56,7 @@ public class CollisionMonitor extends Monitor  {
 		d1.driver_cant_work();
 		d1.getVehilce().Damage();
 		d2.driver_cant_work();
+		d2.getVehilce().Damage();
 		
 	}
 

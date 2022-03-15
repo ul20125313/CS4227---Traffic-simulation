@@ -38,7 +38,7 @@ public class DetectionMethod_v1 implements DetectionMethod{
 	}
 	
 	@Override
-	public void detect_whether_Overtake(ArrayList<Driver> target_drivers, OvertakeMonitor c) {
+	public void detectOvertake(ArrayList<Driver> target_drivers, OvertakeMonitor o) {
 		double dis;
 		 
 		for(int i=0;i<target_drivers.size();i++)
@@ -57,18 +57,45 @@ public class DetectionMethod_v1 implements DetectionMethod{
 				double t2_x = d2.getVehilce().getPosition().getX();
 				double t2_y = d2.getVehilce().getPosition().getY();
 				dis = Math.sqrt((t1_x - t2_x)*(t1_x - t2_x) +(t1_y - t2_y)*(t1_y - t2_y));
-				if(dis<30&&((t1_x>t2_x&&t2_y>500)||(t1_x<t2_x&&t2_y<500)))
+				
+				if(dis<30&&((t1_x>t2_x&&t2_y>303)||(t1_x<t2_x&&t2_y<303))&&d1.getVehilce().getSpeed()<=60)
 				{
 					
-					if(d1.getVehilce().getLane().getLaneNumber()!=2)
-					{
-						d1.getVehilce().turn_to_inside_lane();
-						
-					}
-					else 
-						d1.getVehilce().turn_to_outside_lane();
-					c.removeTargetDriver(d1);
-					Sim_Controller.update_monitor(d1, d1.getVehilce().getLane().getLaneNumber());
+					o.if_Overtake_occurs(d1, d2);
+//					int old_lane_num = d1.getVehilce().getLane().getLaneNumber();
+//					//System.out.println(d1.getVehilce().getLane().getLaneNumber());
+//					if(d1.getVehilce().getLane().getLaneNumber()!=2)
+//					{
+//						d1.getVehilce().turn_to_inside_lane();
+//						
+//					}
+//					else 
+//						d1.getVehilce().turn_to_outside_lane();
+//					
+//					o.removeTargetDriver(d1);
+//					
+//					//System.out.println(d1.getName()+" "+d1.getVehilce().getLane().getLaneNumber());
+//					Sim_Controller.update_monitor(d1, d1.getVehilce().getLane().getLaneNumber(),old_lane_num);
+			
+				}
+				
+				else if(dis<30&&((t2_x>t1_x&&t1_y>303)||(t2_x<t1_x&&t2_y<303))&&d2.getVehilce().getSpeed()<=60)
+				{
+					o.if_Overtake_occurs(d2, d1);
+//					int old_lane_num = d1.getVehilce().getLane().getLaneNumber();
+//					//System.out.println(d2.getVehilce().getLane().getLaneNumber());
+//					if(d2.getVehilce().getLane().getLaneNumber()!=2)
+//					{
+//						d2.getVehilce().turn_to_inside_lane();
+//						
+//					}
+//					else 
+//						d2.getVehilce().turn_to_outside_lane();
+//					
+//					o.removeTargetDriver(d2);
+//					
+//					//System.out.println(d2.getName()+" "+d2.getVehilce().getLane().getLaneNumber());
+//					Sim_Controller.update_monitor(d2, d2.getVehilce().getLane().getLaneNumber(),old_lane_num);
 			
 				}
 			}

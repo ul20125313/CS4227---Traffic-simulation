@@ -275,22 +275,47 @@ public class Sim_Controller extends Thread_source{
 		Monitors.add(o4);
 	}
 	
-	public static void update_monitor(Driver d, int index)
+	public static void update_monitor(Driver d, int index, int old_index)
 	{
+		switch(old_index)
+		{
+		case(4):
+		{	
+			c4.removeTargetDriver(d);
+			break;
+		}
+		case(3):
+		{
+			c3.removeTargetDriver(d);
+			break;
+		}
+		case(2):
+		{
+			c2.removeTargetDriver(d);
+			break;
+		}
+		default:
+			System.out.println("input the wrong old_lane_index");	
+		}
+		
 		switch(index)
 		{
 		case(4):
 		{
+			
+			o4.addTargetDriver(d);
 			c4.addTargetDriver(d);
 			break;
 		}
 		case(3):
 		{
+			o3.addTargetDriver(d);
 			c3.addTargetDriver(d);
 			break;
 		}
 		case(2):
 		{
+			o2.addTargetDriver(d);
 			c2.addTargetDriver(d);
 			break;
 		}
@@ -302,7 +327,7 @@ public class Sim_Controller extends Thread_source{
 	}
 
 	
-	public void init_lanes()
+	public void init_lanes()//the outside lane' number is 4
 	{
 		//create the arraylist for lanes
 		lanes = new ArrayList<>();		
