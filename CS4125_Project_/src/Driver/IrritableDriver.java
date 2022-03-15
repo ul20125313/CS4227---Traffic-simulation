@@ -100,15 +100,6 @@ public class IrritableDriver extends Driver {// the irriable driver extends the 
 			DrivingMode_IrritableDriver did = new DrivingMode_IrritableDriver(); 
 			did.changeDrivingMode(super.mode_code, this);	
 			
-//			if(super.getVehilce().getLane().getLaneNumber() == 1&&!super.getName().equals("Jack"))//modify
-//			{
-//				check_if_collision();
-//			}
-//			if(super.getVehilce().getLane().getLaneNumber() == 2&&!super.getName().equals("Jim"))//modify
-//			{
-//				check_if_collision();//detectcollision
-//			}
-//			check_if_collision();
 			t.end();		
 		}
 
