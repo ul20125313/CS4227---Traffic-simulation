@@ -6,59 +6,45 @@ import Driver.Driver;
 import Vehicle.Vehicle;
 
 public class CHYPayment {
-	
-	
 
 	private Driver driver;
-	private int ticket_fee;
+
 	private OnlinePay cp;
 	private ScanPayAdapter sp;
-	private int driver_balance;
-	private String driver_name;
-	private Vehicle driver_vehicle;
 	private Point cant_move_cars_loc;
-	
-	
-	public CHYPayment()
-	{
-		this.ticket_fee =  7;		
-		this.cp = new OnlinePay();
+	private Picture pic;
+
+	public CHYPayment(Picture pic) {
+		this.pic = pic;
 		this.sp = new ScanPayAdapter();
-		this.cant_move_cars_loc = new Point((40),(40));
+		this.cant_move_cars_loc = new Point((40), (40));
 	}
-	
-	public void setDriverInformation(Driver d)
-	{
+
+	public CHYPayment(int code) {
+		this.cp = new OnlinePay();
+		this.cant_move_cars_loc = new Point((40), (40));
+	}
+
+	public void setDriverInformation(Driver d) {
 		this.driver = d;
-		this.driver_name = d.getName();
-		this.driver_balance = d.getBalance();
-		this.driver_vehicle = d.getVehilce();
 
 	}
-	
-	public boolean check_whether_can_afford()
-	{
-		if(this.sp.paySystem(this.driver, this.ticket_fee))
-		{
-			System.out.println(this.driver.getName()+" has enough money, so he can drive in this road.\n");
+
+	public boolean check_whether_can_afford() {
+
+		if (this.sp.paySystem(this.driver, this.pic)) {
+			System.out.println(this.driver.getName() + " has enough money, so he can drive in this road.\n");
 			return true;
 		}
-		
-		else 
-		{
-			System.out.println(this.driver.getName()+" doesn't have enough money, so he can't drive in this road.\n");
-			this.driver.getVehilce().setPosition((int)this.cant_move_cars_loc.getX(),(int)this.cant_move_cars_loc.getY());
-			//this.driver.Wait();
+
+		else {
+			System.out.println(this.driver.getName() + " doesn't have enough money, so he can't drive in this road.\n");
+			this.driver.getVehilce().setPosition((int) this.cant_move_cars_loc.getX(),
+					(int) this.cant_move_cars_loc.getY());
 			return false;
-		
+
 		}
-		//return false;
 
 	}
-	
-	
-	
-	
+
 }
-
-

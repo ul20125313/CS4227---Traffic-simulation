@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import Adapter.CHYPayment;
+import Adapter.Picture;
 import Builder.Car;
 import Builder.CarBuilder;
 import Builder.CheapWheel;
@@ -379,7 +380,8 @@ public class Sim_Controller extends Thread_source{
 	public void begin()
 	{
 		//boolean driver_has_enough_money = true;
-		CHYPayment chypay = new CHYPayment();
+		Picture pic = new Picture(1);
+		CHYPayment chypay = new CHYPayment(pic);
 		for(Driver d : drivers)//every driver is thread, so here, it starts every thread
 		{
 			
