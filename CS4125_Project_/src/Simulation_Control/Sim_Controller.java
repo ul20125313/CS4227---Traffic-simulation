@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import Adapter.CHYPayment;
+import Builder.Car;
 import Builder.CarBuilder;
+import Builder.CheapWheel;
 import Builder.Exterior;
+import Builder.FOCAL;
 import Builder.Interior;
+import Builder.Man_made_chair;
+import Builder.SteelBody;
 import CollisionDetection.CollisionMonitor;
 import CollisionDetection.Monitor;
 import CollisionDetection.OvertakeMonitor;
@@ -70,15 +75,10 @@ public class Sim_Controller extends Thread_source{
 	private static Monitor o4;
 	//protected CollisionDetectionAlgorithm c4;
 	
-	private CarBuilder cb1;
-	
-
 	
 	public Sim_Controller()
 	{
-		this.cb1 = new CarBuilder();
-		this.cb1.prepare_cheap_car();
-		this.showCheapCar_Parts();
+		this.showCar_Parts();
 	
 		this.drivers = new ArrayList<>();
 		this.Monitors = new ArrayList<>();
@@ -96,25 +96,34 @@ public class Sim_Controller extends Thread_source{
 		
 	}
 	
-	public void showCheapCar_Parts()
+	public void showCar_Parts()
 	{
+		CarBuilder cb1 = new CarBuilder();
+		cb1.buildCar();
+		SteelBody steelbody = new SteelBody();
+		CheapWheel cheapwheel = new CheapWheel();
+		FOCAL focal = new FOCAL();
+		Man_made_chair manmadechair = new Man_made_chair();
+		cb1.buildcarBody(steelbody);
+		cb1.buildChair(manmadechair);
+		cb1.buildSterieo(focal);
+		cb1.buidWheel(cheapwheel);
+		Car c =cb1.getCar();
+		ArrayList<Exterior>exs = new ArrayList<>();
+		exs = c.getExlist();
 		
-		System.out.println("Cheap car's parts list:");
-		ArrayList<Exterior>exs;
-		exs = this.cb1.getCar().getExlist();
-		for(Exterior ex : exs)
+		ArrayList<Interior>ins = new ArrayList<>();
+		ins = c.getInlist();
+		for(Exterior ex: exs)
 		{
 			System.out.println(ex.getExteriorName());
 		}
-		
-		
-		ArrayList<Interior>ins;
-		ins = this.cb1.getCar().getInlist();
-		for(Interior in : ins)
+		for(Interior in:ins)
 		{
 			System.out.println(in.getInteriorName());
 		}
-		System.out.println();
+
+		
 	}
 	
 	public void setJframe(JFrame jf)

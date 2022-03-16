@@ -17,7 +17,7 @@ public class FOCAL extends Sterieo{
 	@Override
 	public String getInteriorName() {
 		// TODO Auto-generated method stub
-		return "Interior"+"FOCAL ";
+		return "Interior "+"FOCAL ";
 	}
 
 }

@@ -2,23 +2,27 @@ package Builder;
 
 public class CarBuilder {
 	private Car c;
-	public void prepare_expensive_car()
+	public void buildCar()
 	{
 		this.c = new Car();
-		c.add_Exterior(new MichelinWheel());
-		c.add_Exterior(new AluminiumBody());
-		c.add_Interior(new Meridian());
-		c.add_Interior(new Leather_chair());
+	}
+	public void buidWheel(Wheel w)
+	{
+		this.c.add_Exterior(w);
 		
 	}
-	
-	public void prepare_cheap_car()
+
+	public void buildSterieo(Sterieo s)
 	{
-		this.c = new Car();
-		c.add_Exterior(new CheapWheel());
-		c.add_Exterior(new SteelBody());
-		c.add_Interior(new FOCAL());
-		c.add_Interior(new Man_made_chair());
+		this.c.add_Interior(s);
+	}
+	public void buildcarBody(carBody cb)
+	{
+		this.c.add_Exterior(cb);
+	}
+	public void buildChair(Chair ch)
+	{
+		this.c.add_Interior(ch);
 	}
 	public Car getCar()
 	{
