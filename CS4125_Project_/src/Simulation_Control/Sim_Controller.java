@@ -63,8 +63,8 @@ public class Sim_Controller extends Thread_source{
 	private JFrame jf;
 	private SpeedChangedKey speedchanged_key;
 	
-	public VehicleAccelerationCommand vehicleAccelerationCommand;
-	public VehicleDecelerationCommand vehicleDecelerationCommand;
+	public VehicleAccelerationCommand[] vehicleAccelerationCommands;
+	public VehicleDecelerationCommand[] vehicleDecelerationCommands;
 	
 	
 	
@@ -93,6 +93,9 @@ public class Sim_Controller extends Thread_source{
 		this.init_Monitor();
 		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes, this);
 		this.speedchanged_key = new SpeedChangedKey(jf);
+		
+		this.vehicleAccelerationCommands = new VehicleAccelerationCommand[10];
+		this.vehicleDecelerationCommands = new VehicleDecelerationCommand[10];
 		
 		
 	}
@@ -392,12 +395,46 @@ public class Sim_Controller extends Thread_source{
 			}
 			
 			if(d.getName().equals("J.J")) {
-				this.speedchanged_key.setDriver(d);		
-				this.vehicleAccelerationCommand = new VehicleAccelerationCommand(d);
-				this.speedchanged_key.getvehicleAccelerationCommand(vehicleAccelerationCommand);
-				this.vehicleDecelerationCommand = new VehicleDecelerationCommand(d);
-				this.speedchanged_key.getvehicleDecelerationCommand(vehicleDecelerationCommand);			
-				this.speedchanged_key.setKeyEvent();
+				
+				this.vehicleAccelerationCommands[0] = new VehicleAccelerationCommand(d);
+				this.vehicleDecelerationCommands[0] = new VehicleDecelerationCommand(d);
+				
+			}
+			if(d.getName().equals("Sam")) {
+				
+				this.vehicleAccelerationCommands[1] = new VehicleAccelerationCommand(d);
+				this.vehicleDecelerationCommands[1] = new VehicleDecelerationCommand(d);
+				
+			}
+			if(d.getName().equals("Tom")) {
+				
+				this.vehicleAccelerationCommands[2] = new VehicleAccelerationCommand(d);
+				this.vehicleDecelerationCommands[2] = new VehicleDecelerationCommand(d);
+				
+			}
+			if(d.getName().equals("Jack")) {
+				
+				this.vehicleAccelerationCommands[3] = new VehicleAccelerationCommand(d);
+				this.vehicleDecelerationCommands[3] = new VehicleDecelerationCommand(d);
+				
+			}
+			if(d.getName().equals("Jim")) {
+				
+				this.vehicleAccelerationCommands[4] = new VehicleAccelerationCommand(d);
+				this.vehicleDecelerationCommands[4] = new VehicleDecelerationCommand(d);
+				
+			}
+			if(d.getName().equals("Nik")) {
+				
+				this.vehicleAccelerationCommands[5] = new VehicleAccelerationCommand(d);
+				this.vehicleDecelerationCommands[5] = new VehicleDecelerationCommand(d);
+				
+			}
+			if(d.getName().equals("Dan")) {
+				
+				this.vehicleAccelerationCommands[6] = new VehicleAccelerationCommand(d);
+				this.vehicleDecelerationCommands[6] = new VehicleDecelerationCommand(d);
+				
 			}
 			
 			if(d.getClass().toString().equals("class Driver.NormalDriver")) 
@@ -420,6 +457,11 @@ public class Sim_Controller extends Thread_source{
 		{
 			new Thread(cd).start();
 		}
+
+		this.speedchanged_key.getvehicleAccelerationCommands(vehicleAccelerationCommands);
+		this.speedchanged_key.getvehicleDecelerationCommands(vehicleDecelerationCommands);			
+		this.speedchanged_key.setKeyEvent();
+		
 	    graphics.run();
 		
 		
