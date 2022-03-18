@@ -129,11 +129,17 @@ public class Draw_map implements I_Draw_map{
 	
 	//method newDriverName() and newCarName() for looking better when showing the info on GUI
 	private String newDriverName(String drivername) {
-		if(drivername.equals("J.J"))
+		if(drivername.equals("J.J."))
 			return drivername + "    ";
 		else if(drivername.equals("Sam"))
 			return drivername + " ";
 		else if(drivername.equals("Tom"))
+			return drivername + " ";
+		else if(drivername.equals("Jack"))
+			return drivername + " ";
+		else if(drivername.equals("Jim"))
+			return drivername + " ";
+		else if(drivername.equals("Nik"))
 			return drivername + " ";
 		else
 			return drivername + " ";
