@@ -27,6 +27,8 @@ import Driver.Driver;
 import Driver.DriverFactory;
 import Driver.IrritableDriver;
 import Driver.NormalDriver;
+import Iterator.DriverRepository;
+import Iterator.Iterator;
 import Road.Lane;
 import Road.Lane1;
 import Road.Lane2;
@@ -62,6 +64,7 @@ public class Sim_Controller extends Thread_source{
 	private Point Ninthcar_loc;
 	private JFrame jf;
 	private SpeedChangedKey speedchanged_key;
+	private DriverRepository driversRepository;
 	
 	public VehicleAccelerationCommand[] vehicleAccelerationCommands;
 	public VehicleDecelerationCommand[] vehicleDecelerationCommands;
@@ -96,6 +99,8 @@ public class Sim_Controller extends Thread_source{
 		
 		this.vehicleAccelerationCommands = new VehicleAccelerationCommand[10];
 		this.vehicleDecelerationCommands = new VehicleDecelerationCommand[10];
+		
+		driversRepository = new DriverRepository();
 		
 		
 	}
@@ -243,6 +248,7 @@ public class Sim_Controller extends Thread_source{
 	
 
 		}
+		
 
 
 	}
@@ -385,8 +391,12 @@ public class Sim_Controller extends Thread_source{
 		//boolean driver_has_enough_money = true;
 		Picture pic = new Picture(1);
 		CHYPayment chypay = new CHYPayment(pic);
-		for(Driver d : drivers)//every driver is thread, so here, it starts every thread
+		
+		driversRepository.getDrivers(drivers);
+		
+		for(Iterator iter = driversRepository.getIterator(); iter.hasNext();)//every driver is thread, so here, it starts every thread
 		{
+			Driver d = (Driver)iter.next();
 			
             chypay.setDriverInformation(d);
 			if(!chypay.check_whether_can_afford())
