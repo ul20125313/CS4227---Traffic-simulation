@@ -120,7 +120,7 @@ public class Draw_map implements I_Draw_map{
 	{
 		this.graphics.setColor(Color.RED);
 		this.graphics.setFont(new Font("Calibri", Font.BOLD, 13));
-		this.graphics.drawString("-------" + "Driver" + "-------" + "CarName" + "-----" + "Speed", 0, 460);
+		this.graphics.drawString("-----" + "Driver" + "---------" + "CarName" + "--------" + "Speed" + "---------------", 0, 460);
 		
 	}
 	
@@ -132,7 +132,8 @@ public class Draw_map implements I_Draw_map{
 		//System.out.println(speed_str);
 		this.graphics.setColor(Color.RED);
 		this.graphics.setFont(new Font("Calibri", Font.BOLD, 13));
-		this.graphics.drawString(newDriverName(drivername) + "   " + driverTemperType + "     " + newCarName(carName) + "      " + speed_str + " " + " km/h", 0, height);
+		this.graphics.drawString(newDriverName(drivername) + "   " + newDriverTemperType(driverTemperType)
+										+ "     " + newCarName(carName) + "     " + speed_str + " " + " km/h", 0, height);
 	 
 	}
 	
@@ -155,13 +156,20 @@ public class Draw_map implements I_Draw_map{
 			
 	}
 	
+	private String newDriverTemperType(String driverTemperType) {
+		if(driverTemperType.equals("Normal"))
+			return driverTemperType + " ";
+		else
+			return driverTemperType;
+	}
+	
 	private String newCarName(String carName) {
 		if(carName.equals("Ferrari"))
 			return carName + "  ";
 		else if(carName.equals("Benz"))
 			return carName + "     ";
 		else if(carName.equals("Mazda"))
-			return carName + "   ";
+			return carName + "  ";
 		else
 			return carName + "";
 			
@@ -275,13 +283,26 @@ public class Draw_map implements I_Draw_map{
 		
 		this.m.set_info(driverNames, speeds, carNames, driverTempers);	// deliver the information to the concrete subject class
 		
-        this.draw_updateinfo_in_all_tracks(this.vo1.Vehicle1_speed(), this.vo1.Vehicle1_drivernames(), this.vo1.Vehicle1_carnames(), this.vo1.Vehicle1_driverTempers(), 480);//510 500
-        this.draw_updateinfo_in_all_tracks(this.vo2.Vehicle2_speed(), this.vo2.Vehicle2_drivernames(), this.vo2.Vehicle2_carnames(), this.vo2.Vehicle2_driverTempers(), 500);//530
-        this.draw_updateinfo_in_all_tracks(this.vo3.Vehicle3_speed(), this.vo3.Vehicle3_drivernames(), this.vo3.Vehicle3_carnames(), this.vo3.Vehicle3_driverTempers(), 520);//550
-        this.draw_updateinfo_in_all_tracks(this.vo4.Vehicle4_speed(), this.vo4.Vehicle4_drivernames(), this.vo4.Vehicle4_carnames(), this.vo4.Vehicle4_driverTempers(), 540);//570
-        this.draw_updateinfo_in_all_tracks(this.vo5.Vehicle5_speed(), this.vo5.Vehicle5_drivernames(), this.vo5.Vehicle5_carnames(), this.vo5.Vehicle5_driverTempers(), 560);
-        this.draw_updateinfo_in_all_tracks(this.vo6.Vehicle6_speed(), this.vo6.Vehicle6_drivernames(), this.vo6.Vehicle6_carnames(), this.vo6.Vehicle6_driverTempers(), 580);
-        this.draw_updateinfo_in_all_tracks(this.vo7.Vehicle7_speed(), this.vo7.Vehicle7_drivernames(), this.vo7.Vehicle7_carnames(), this.vo7.Vehicle7_driverTempers(), 600);
+        this.draw_updateinfo_in_all_tracks(this.vo1.Vehicle1_speed(), this.vo1.Vehicle1_drivernames(),
+        		this.vo1.Vehicle1_carnames(), this.vo1.Vehicle1_driverTempers(), 480);//510 500
+        
+        this.draw_updateinfo_in_all_tracks(this.vo2.Vehicle2_speed(), this.vo2.Vehicle2_drivernames(),
+        		this.vo2.Vehicle2_carnames(), this.vo2.Vehicle2_driverTempers(), 500);//530
+        
+        this.draw_updateinfo_in_all_tracks(this.vo3.Vehicle3_speed(), this.vo3.Vehicle3_drivernames(),
+        		this.vo3.Vehicle3_carnames(), this.vo3.Vehicle3_driverTempers(), 520);//550
+        
+        this.draw_updateinfo_in_all_tracks(this.vo4.Vehicle4_speed(), this.vo4.Vehicle4_drivernames(),
+        		this.vo4.Vehicle4_carnames(), this.vo4.Vehicle4_driverTempers(), 540);//570
+        
+        this.draw_updateinfo_in_all_tracks(this.vo5.Vehicle5_speed(), this.vo5.Vehicle5_drivernames(),
+        		this.vo5.Vehicle5_carnames(), this.vo5.Vehicle5_driverTempers(), 560);
+        
+        this.draw_updateinfo_in_all_tracks(this.vo6.Vehicle6_speed(), this.vo6.Vehicle6_drivernames(),
+        		this.vo6.Vehicle6_carnames(), this.vo6.Vehicle6_driverTempers(), 580);
+        
+        this.draw_updateinfo_in_all_tracks(this.vo7.Vehicle7_speed(), this.vo7.Vehicle7_drivernames(),
+        		this.vo7.Vehicle7_carnames(), this.vo7.Vehicle7_driverTempers(), 600);
 	}
 
 	
