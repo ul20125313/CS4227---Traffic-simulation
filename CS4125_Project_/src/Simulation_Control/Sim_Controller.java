@@ -29,6 +29,7 @@ import Driver.IrritableDriver;
 import Driver.NormalDriver;
 import Iterator.DriverRepository;
 import Iterator.Iterator;
+import Iterator.MonitorRepository;
 import Road.Lane;
 import Road.Lane1;
 import Road.Lane2;
@@ -65,6 +66,7 @@ public class Sim_Controller extends Thread_source{
 	private JFrame jf;
 	private SpeedChangedKey speedchanged_key;
 	private DriverRepository driversRepository;
+	private MonitorRepository monitorsRepository;
 	
 	public VehicleAccelerationCommand[] vehicleAccelerationCommands;
 	public VehicleDecelerationCommand[] vehicleDecelerationCommands;
@@ -93,14 +95,23 @@ public class Sim_Controller extends Thread_source{
 		this.init_lanes();
 		
 		this.create_Drivers();
+		
+		driversRepository = new DriverRepository();
+		driversRepository.getDrivers(drivers);
+		
 		this.init_Monitor();
+		
+		monitorsRepository = new MonitorRepository();
+		monitorsRepository.getMonitors(Monitors);
+		
+		
 		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes, this);
 		this.speedchanged_key = new SpeedChangedKey(jf);
 		
 		this.vehicleAccelerationCommands = new VehicleAccelerationCommand[10];
 		this.vehicleDecelerationCommands = new VehicleDecelerationCommand[10];
 		
-		driversRepository = new DriverRepository();
+		
 		
 		
 	}
@@ -262,8 +273,11 @@ public class Sim_Controller extends Thread_source{
 		o3= new OvertakeMonitor( new DetectionMethod_v1());
 		o4 = new OvertakeMonitor( new DetectionMethod_v1());
 		
-		for(Driver d : drivers)
+//		for(Driver d : drivers)
+		for(Iterator iter = driversRepository.getIterator(); iter.hasNext();)
 		{
+			Driver d = (Driver)iter.next();
+			
 			switch(d.getVehilce().getLane().getLaneNumber())
 			{
 			case(4):
@@ -392,7 +406,7 @@ public class Sim_Controller extends Thread_source{
 		Picture pic = new Picture(1);
 		CHYPayment chypay = new CHYPayment(pic);
 		
-		driversRepository.getDrivers(drivers);
+		
 		
 		for(Iterator iter = driversRepository.getIterator(); iter.hasNext();)//every driver is thread, so here, it starts every thread
 		{
@@ -463,8 +477,11 @@ public class Sim_Controller extends Thread_source{
 			
 		}
 		
-		for(Monitor cd :Monitors)
+//		for(Monitor cd :Monitors)
+		for(Iterator iter = monitorsRepository.getIterator(); iter.hasNext();)
 		{
+			Monitor cd = (Monitor)iter.next();
+			
 			new Thread(cd).start();
 		}
 
