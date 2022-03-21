@@ -15,10 +15,13 @@ import Driver.Driver;
 import Driver.IrritableDriver;
 import Driver.NormalDriver;
 import Observer.Speed_Monitor;
-import Observer.Track1_Ob;
-import Observer.Track2_Ob;
-import Observer.Track3_Ob;
-import Observer.Track4_Ob;
+import Observer.Vehicle1_Ob;
+import Observer.Vehicle2_Ob;
+import Observer.Vehicle3_Ob;
+import Observer.Vehicle4_Ob;
+import Observer.Vehicle5_Ob;
+import Observer.Vehicle6_Ob;
+import Observer.Vehicle7_Ob;
 import Road.Lane;
 import Vehicle.Vehicle;
 
@@ -39,10 +42,13 @@ public class Draw_map implements I_Draw_map{
 
 	private ArrayList<Lane>lanes;
 	private Speed_Monitor m ;
-	private Track1_Ob t1; 
-	private Track2_Ob t2; 
-	private Track3_Ob t3; 
-	private Track4_Ob t4; 
+	private Vehicle1_Ob vo1; 
+	private Vehicle2_Ob vo2; 
+	private Vehicle3_Ob vo3; 
+	private Vehicle4_Ob vo4; 
+	private Vehicle5_Ob vo5;
+	private Vehicle6_Ob vo6; 
+	private Vehicle7_Ob vo7; 
 	
 	
 	
@@ -75,10 +81,13 @@ public class Draw_map implements I_Draw_map{
 	private void Observer_init()
 	{
 		this.m = new Speed_Monitor();
-		this.t1 = new Track1_Ob(m);
-		this.t2 = new Track2_Ob(m);
-		this.t3 = new Track3_Ob(m);
-		this.t4 = new Track4_Ob(m);
+		this.vo1 = new Vehicle1_Ob(m);
+		this.vo2 = new Vehicle2_Ob(m);
+		this.vo3 = new Vehicle3_Ob(m);
+		this.vo4 = new Vehicle4_Ob(m);
+		this.vo5 = new Vehicle5_Ob(m);
+		this.vo6 = new Vehicle6_Ob(m);
+		this.vo7 = new Vehicle7_Ob(m);
 		
 	}
 	
@@ -111,7 +120,7 @@ public class Draw_map implements I_Draw_map{
 	{
 		this.graphics.setColor(Color.RED);
 		this.graphics.setFont(new Font("Calibri", Font.BOLD, 13));
-		this.graphics.drawString("-------" + "Driver" + "-------" + "CarName" + "-----" + "Speed", 0, 490);
+		this.graphics.drawString("-------" + "Driver" + "-------" + "CarName" + "-----" + "Speed", 0, 460);
 		
 	}
 	
@@ -123,35 +132,36 @@ public class Draw_map implements I_Draw_map{
 		//System.out.println(speed_str);
 		this.graphics.setColor(Color.RED);
 		this.graphics.setFont(new Font("Calibri", Font.BOLD, 13));
-		this.graphics.drawString(newDriverName(drivername) + "   " + driverTemperType + "      " + newCarName(carName) + "        " + speed_str + "  " + " km/h", 0, height);
+		this.graphics.drawString(newDriverName(drivername) + "   " + driverTemperType + "     " + newCarName(carName) + "      " + speed_str + " " + " km/h", 0, height);
 	 
 	}
 	
 	//method newDriverName() and newCarName() for looking better when showing the info on GUI
 	private String newDriverName(String drivername) {
 		if(drivername.equals("J.J."))
-			return drivername + "    ";
+			return drivername + "  ";
 		else if(drivername.equals("Sam"))
-			return drivername + " ";
+			return drivername + "";
 		else if(drivername.equals("Tom"))
-			return drivername + " ";
+			return drivername + "";
 		else if(drivername.equals("Jack"))
-			return drivername + " ";
+			return drivername + "";
 		else if(drivername.equals("Jim"))
 			return drivername + " ";
 		else if(drivername.equals("Nik"))
 			return drivername + " ";
 		else
-			return drivername + " ";
+			return drivername + "";
 			
 	}
+	
 	private String newCarName(String carName) {
 		if(carName.equals("Ferrari"))
-			return carName + "";
-		else if(carName.equals("Benz"))
-			return carName + "   ";
-		else if(carName.equals("Mazda"))
 			return carName + "  ";
+		else if(carName.equals("Benz"))
+			return carName + "     ";
+		else if(carName.equals("Mazda"))
+			return carName + "   ";
 		else
 			return carName + "";
 			
@@ -228,11 +238,19 @@ public class Draw_map implements I_Draw_map{
 		speeds.add(ds.get(2).getVehilce().getSpeed());
 		speeds.add(ds.get(3).getVehilce().getSpeed());
 		
+		speeds.add(ds.get(4).getVehilce().getSpeed());
+		speeds.add(ds.get(5).getVehilce().getSpeed());
+		speeds.add(ds.get(6).getVehilce().getSpeed());
+		
 		ArrayList<String>driverNames = new ArrayList<>();
 		driverNames.add(ds.get(0).getName());
 		driverNames.add(ds.get(1).getName());
 		driverNames.add(ds.get(2).getName());
 		driverNames.add(ds.get(3).getName());
+		
+		driverNames.add(ds.get(4).getName());
+		driverNames.add(ds.get(5).getName());
+		driverNames.add(ds.get(6).getName());
 		
 		ArrayList<String>carNames = new ArrayList<>();
 		carNames.add(ds.get(0).getVehilce().getCarName());
@@ -240,19 +258,30 @@ public class Draw_map implements I_Draw_map{
 		carNames.add(ds.get(2).getVehilce().getCarName());
 		carNames.add(ds.get(3).getVehilce().getCarName());
 		
+		carNames.add(ds.get(4).getVehilce().getCarName());
+		carNames.add(ds.get(5).getVehilce().getCarName());
+		carNames.add(ds.get(6).getVehilce().getCarName());
+		
 		ArrayList<String>driverTempers = new ArrayList<>();
 		driverTempers.add(ds.get(0).getDriverTemperType());
 		driverTempers.add(ds.get(1).getDriverTemperType());
 		driverTempers.add(ds.get(2).getDriverTemperType());
 		driverTempers.add(ds.get(3).getDriverTemperType());
+		
+		driverTempers.add(ds.get(4).getDriverTemperType());
+		driverTempers.add(ds.get(5).getDriverTemperType());
+		driverTempers.add(ds.get(6).getDriverTemperType());
 				
 		
 		this.m.set_info(driverNames, speeds, carNames, driverTempers);	// deliver the information to the concrete subject class
 		
-        this.draw_updateinfo_in_all_tracks(this.t1.Track1_speed(), this.t1.Track1_drivernames(), this.t1.Track1_carnames(), this.t1.Track1_driverTempers(), 510);
-        this.draw_updateinfo_in_all_tracks(this.t2.Track2_speed(), this.t2.Track2_drivernames(), this.t2.Track2_carnames(), this.t2.Track2_driverTempers(), 530);
-        this.draw_updateinfo_in_all_tracks(this.t3.Track3_speed(), this.t3.Track3_drivernames(), this.t3.Track3_carnames(), this.t3.Track3_driverTempers(), 550);
-        this.draw_updateinfo_in_all_tracks(this.t4.Track4_speed(), this.t4.Track4_drivernames(), this.t4.Track4_carnames(), this.t4.Track4_driverTempers(), 570);
+        this.draw_updateinfo_in_all_tracks(this.vo1.Vehicle1_speed(), this.vo1.Vehicle1_drivernames(), this.vo1.Vehicle1_carnames(), this.vo1.Vehicle1_driverTempers(), 480);//510 500
+        this.draw_updateinfo_in_all_tracks(this.vo2.Vehicle2_speed(), this.vo2.Vehicle2_drivernames(), this.vo2.Vehicle2_carnames(), this.vo2.Vehicle2_driverTempers(), 500);//530
+        this.draw_updateinfo_in_all_tracks(this.vo3.Vehicle3_speed(), this.vo3.Vehicle3_drivernames(), this.vo3.Vehicle3_carnames(), this.vo3.Vehicle3_driverTempers(), 520);//550
+        this.draw_updateinfo_in_all_tracks(this.vo4.Vehicle4_speed(), this.vo4.Vehicle4_drivernames(), this.vo4.Vehicle4_carnames(), this.vo4.Vehicle4_driverTempers(), 540);//570
+        this.draw_updateinfo_in_all_tracks(this.vo5.Vehicle5_speed(), this.vo5.Vehicle5_drivernames(), this.vo5.Vehicle5_carnames(), this.vo5.Vehicle5_driverTempers(), 560);
+        this.draw_updateinfo_in_all_tracks(this.vo6.Vehicle6_speed(), this.vo6.Vehicle6_drivernames(), this.vo6.Vehicle6_carnames(), this.vo6.Vehicle6_driverTempers(), 580);
+        this.draw_updateinfo_in_all_tracks(this.vo7.Vehicle7_speed(), this.vo7.Vehicle7_drivernames(), this.vo7.Vehicle7_carnames(), this.vo7.Vehicle7_driverTempers(), 600);
 	}
 
 	
