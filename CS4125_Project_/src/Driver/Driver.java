@@ -35,6 +35,14 @@ public abstract class Driver implements Runnable{
 	{
 		return this.balance;
 	}
+	public void balanceIncrease(int money)
+	{
+		this.balance = this.balance + money;
+	}
+	public void balanceDecrease(int money)
+	{
+		this.balance = this.balance - money;
+	}
 	public boolean getIs_Collosion() {
 		return is_Collision;
 	}
@@ -80,9 +88,7 @@ public abstract class Driver implements Runnable{
 	public void pri() {
 		
 	}
-	
-	
-	
+
 	public void Drive() {
 		
 	}

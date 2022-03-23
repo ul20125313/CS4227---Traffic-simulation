@@ -27,6 +27,8 @@ import Driver.Driver;
 import Driver.DriverFactory;
 import Driver.IrritableDriver;
 import Driver.NormalDriver;
+import Framework.Framework;
+import Framework.PayInterceptor;
 import Iterator.DriverRepository;
 import Iterator.Iterator;
 import Iterator.MonitorRepository;
@@ -402,11 +404,20 @@ public class Sim_Controller extends Thread_source{
 	
 	public void begin()
 	{
+		
+		Framework framework = Framework.getInstance();
+		PayInterceptor payinterceptor  = new PayInterceptor();
+		framework.registerPayInterceptor(payinterceptor);
+		
 		//boolean driver_has_enough_money = true;
 		Picture pic = new Picture(1);
 		CHYPayment chypay = new CHYPayment(pic);
 		
-		
+//		for(Driver d:drivers)
+//		{
+//			System.out.println(d.getBalance());
+//		}
+	
 		
 		for(Iterator iter = driversRepository.getIterator(); iter.hasNext();)//every driver is thread, so here, it starts every thread
 		{
@@ -465,14 +476,18 @@ public class Sim_Controller extends Thread_source{
 			{
 
 				NormalDriver NormalDriver = (NormalDriver)d;//downward transition, convert driver class to normalDriver class
-				new Thread(NormalDriver).start();		
+				Thread t = new Thread(NormalDriver);
+				t.start();
+				//new Thread(NormalDriver).start();		
 		    }
 			
 		     else if(d.getClass().toString().equals("class Driver.IrritableDriver")) 
 		    {		    
 		    	 
 		    	 IrritableDriver IrritableDriver = (IrritableDriver)d;//downward transition, convert driver class to irritableDriver class
-		    	 new Thread(IrritableDriver).start();
+		    	 Thread t = new Thread(IrritableDriver);
+				 t.start();
+		    	 //new Thread(IrritableDriver).start();
 		    }			
 			
 		}
@@ -481,7 +496,6 @@ public class Sim_Controller extends Thread_source{
 		for(Iterator iter = monitorsRepository.getIterator(); iter.hasNext();)
 		{
 			Monitor cd = (Monitor)iter.next();
-			
 			new Thread(cd).start();
 		}
 

@@ -3,6 +3,8 @@ package Adapter;
 import java.awt.Point;
 
 import Driver.Driver;
+import Framework.Framework;
+import Framework.PrePayContext;
 import Vehicle.Vehicle;
 
 public class CHYPayment {
@@ -31,6 +33,10 @@ public class CHYPayment {
 	}
 
 	public boolean check_whether_can_afford() {
+		
+		//before pay()
+		PrePayContext context = new PrePayContext(1, this.driver);
+		Framework.getInstance().prePay(context);
 
 		if (this.sp.paySystem(this.driver, this.pic)) {
 			System.out.println(this.driver.getName() + " has enough money, so he can drive in this road.\n");

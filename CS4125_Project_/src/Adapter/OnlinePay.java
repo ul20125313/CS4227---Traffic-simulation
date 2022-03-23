@@ -1,6 +1,8 @@
 package Adapter;
 
 import Driver.Driver;
+import Framework.Framework;
+import Framework.PostPayContext;
 
 public class OnlinePay {
 	private int ticket_fee;
@@ -9,6 +11,12 @@ public class OnlinePay {
 		System.out.println("this is the Online mehtod for payment");
 		this.ticket_fee = getticketfee(ticket_code);
 		if (d.getBalance() > ticket_fee) {
+			//interception point(after pay)
+			
+			Payment payment = new Payment();
+			payment.set_pay_money(ticket_fee);
+			PostPayContext postpaycontext = new PostPayContext(2, payment, d );
+			Framework.getInstance().postPay(postpaycontext);
 
 			return true;
 		}
