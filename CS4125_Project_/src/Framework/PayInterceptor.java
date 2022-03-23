@@ -11,6 +11,7 @@ public class PayInterceptor implements Interceptor
 	public void prepay(PrePayContext context) 
 	{
 		System.out.println(context.getDriver().getName()+" Start the payment");
+		Framework.getInstance().prePay(context);
 		// TODO Auto-generated method stub	
 	}
 
@@ -27,6 +28,7 @@ public class PayInterceptor implements Interceptor
 			d = c.getDriver();
 			d.balanceDecrease(p.get_pay_money());
 			p.finsh_payment();
+			Framework.getInstance().postPay(context);
 		}
 
 		else if(context.getMessage().equals("error"))
@@ -35,6 +37,8 @@ public class PayInterceptor implements Interceptor
 			{
 				System.out.println("this is something wrong with the payment");
 				
+				Framework.getInstance().postPay(context);
+				
 			}
 			catch(Exception e)
 			{
@@ -42,6 +46,7 @@ public class PayInterceptor implements Interceptor
 			}
 			
 		}
+		
 
 		// TODO Auto-generated method stub	
 	}

@@ -8,12 +8,18 @@ public class Context {
 		{
 		case(1):
 			this.message = "prepay";
+		    break;
 		case(2):
 			this.message = "postpay";
+		    break;
 		case(3):
 			this.message = "error";
-		}		
-		this.message = message;
+		    break;
+		default:
+			break;
+		}
+		
+		
 		
 	}
 	public String getMessage()

@@ -33,7 +33,7 @@ public class Framework {
 		pd.prePay(context);
 	}
 	
-	public void postPay(PostPayContext context)
+	public void postPay(Context context)
 	{
 		pd.postPay(context);
 		

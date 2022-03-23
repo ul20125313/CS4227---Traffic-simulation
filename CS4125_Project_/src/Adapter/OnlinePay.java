@@ -1,6 +1,7 @@
 package Adapter;
 
 import Driver.Driver;
+import Framework.ErrorContext;
 import Framework.Framework;
 import Framework.PostPayContext;
 
@@ -19,6 +20,12 @@ public class OnlinePay {
 			Framework.getInstance().postPay(postpaycontext);
 
 			return true;
+		}
+		else 
+		{
+			
+			ErrorContext errorcontext = new ErrorContext(3);
+			Framework.getInstance().postPay(errorcontext);
 		}
 		return false;
 	}

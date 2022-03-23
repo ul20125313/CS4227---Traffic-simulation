@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 public class Paydispatcher {
 	private static Paydispatcher paydis;
+	private int index_1;
+	private int index_2;
 	ArrayList<Interceptor>payinters;
 	
 	public Paydispatcher()
 	{
 		this.payinters = new ArrayList<>();
+		this.index_1 = 0;
+		this.index_2 = 0;
 	}
 	
 	public static Paydispatcher geInstance()
@@ -33,19 +37,32 @@ public class Paydispatcher {
 	
 	public void prePay(PrePayContext context)
 	{
-		for(Interceptor payinterceptor : payinters)
+		if(index_1 == payinters.size())
 		{
-			payinterceptor.prepay(context);
+			index_1 =0;
+		}
+		else
+		{
+			//index_1 ++;
+			payinters.get(index_1++).prepay(context);
+			
 		}
 		
 		
 	}
 	
-	public void postPay(PostPayContext context)
+	public void postPay(Context context)
 	{
-		for(Interceptor payinterceptor : payinters)
+	
+		if(index_2 == payinters.size())
 		{
-			payinterceptor.postpay(context);
+			index_2 = 0;
+		}
+		else
+		{
+			//index_2 ++;
+			payinters.get(index_2++).postpay(context);
+			
 		}
 		
 		
