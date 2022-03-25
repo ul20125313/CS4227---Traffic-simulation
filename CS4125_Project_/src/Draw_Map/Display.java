@@ -28,6 +28,7 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 	private ButtonCreate Default_Button_Set;
 	
 	private Sim_Controller sim_c;
+
 //	private SpeedChangedKey speedchanged_key;
 
 		
@@ -78,6 +79,7 @@ public class Display implements IDisplay{//this class is used to draw the frame 
         this.Safe_Button_Set.createButton(1000, 150, 60, 30, 6);
         this.Racer_Button_Set= new ButtonCreate(frame);
         this.Racer_Button_Set.createButton(1000, 180, 60, 30, 7);
+
        
         
        
@@ -114,6 +116,7 @@ public class Display implements IDisplay{//this class is used to draw the frame 
 			return this.Autumn_Button_Set;
 		case(4):
 			return this.Winter_Button_Set;
+		
 		default:
 			return new ButtonCreate(new JFrame());
 

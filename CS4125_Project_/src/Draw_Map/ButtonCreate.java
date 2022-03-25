@@ -26,6 +26,7 @@ public class ButtonCreate {
 	private static final int Default = 5;
 	private static final int Safe = 6;
 	private static final int Racer = 7;
+
 	
 	public ButtonCreate(JFrame f)
 	{

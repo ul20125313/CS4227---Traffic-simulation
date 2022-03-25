@@ -3,6 +3,8 @@ import Thread.Threadprocess;
 
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -23,6 +25,7 @@ public class Gra_Controller extends Thread_source{
 	private ButtonCreate b_c_2;
 	private ButtonCreate b_c_3;
 	private ButtonCreate b_c_4;
+
 	private Sim_Controller sim_c;
 
 	
@@ -43,8 +46,6 @@ public class Gra_Controller extends Thread_source{
 		this.b_c_4 = this.idisplay.get_ButtonCreate(4);
 		this.b_c_4.setMap(this.d_map);
 
-
-	
 //		System.out.println("Gra_Control map_width "+map_wi+" Map_height "+map_he);
 	
 	}

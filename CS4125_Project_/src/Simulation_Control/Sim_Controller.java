@@ -22,7 +22,6 @@ import CollisionDetection.DetectionMethod_v2;
 import Command.SpeedChangedKey;
 import Command.VehicleAccelerationCommand;
 import Command.VehicleDecelerationCommand;
-import Draw_Map.ButtonCreate;
 import Driver.Driver;
 import Driver.DriverFactory;
 import Driver.IrritableDriver;
@@ -47,6 +46,7 @@ import Vehicle.VehicleType;
 import Vehicle.VehicleTypeFactory;
 
 import Simulation_Control.Thread_source;
+import StartVisual.StartFrame;
 
 
 public class Sim_Controller extends Thread_source{
@@ -69,7 +69,7 @@ public class Sim_Controller extends Thread_source{
 	private SpeedChangedKey speedchanged_key;
 	private DriverRepository driversRepository;
 	private MonitorRepository monitorsRepository;
-	
+	private StartFrame sf;
 	public VehicleAccelerationCommand[] vehicleAccelerationCommands;
 	public VehicleDecelerationCommand[] vehicleDecelerationCommands;
 	
@@ -86,6 +86,7 @@ public class Sim_Controller extends Thread_source{
 	
 	public Sim_Controller()
 	{
+		
 		this.showCar_Parts();
 	
 		this.drivers = new ArrayList<>();
@@ -108,14 +109,19 @@ public class Sim_Controller extends Thread_source{
 		
 		
 		this.graphics = new Gra_Controller(this.map_wi, this.map_he, drivers, this.lanes, this);
+		
+		this.sf = StartFrame.getInstance();
+		sf.setDrivers(drivers);
+		sf.createComboBox();
+		sf.createtextandButton();
+		sf.createtextandButton_2();
+		sf.completeFrame();
+		
 		this.speedchanged_key = new SpeedChangedKey(jf);
 		
 		this.vehicleAccelerationCommands = new VehicleAccelerationCommand[10];
 		this.vehicleDecelerationCommands = new VehicleDecelerationCommand[10];
-		
-		
-		
-		
+
 	}
 	
 	public void showCar_Parts()
