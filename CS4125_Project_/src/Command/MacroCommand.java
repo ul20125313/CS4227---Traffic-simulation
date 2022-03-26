@@ -11,7 +11,8 @@ public class MacroCommand implements Command{
 	public void execute() {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < commands.length; i++) {
-			commands[i].execute();
+			if(commands[i] != null)
+				commands[i].execute();
 		}
 	}
 
@@ -19,7 +20,8 @@ public class MacroCommand implements Command{
 	public void undo() {
 		// TODO Auto-generated method stub
 		for(int i = commands.length - 1; i >= 0; i--) {
-			commands[i].undo();
+			if(commands[i] != null)
+				commands[i].undo();
 		}
 	}
 

@@ -35,13 +35,21 @@ public class CommandController {
 	}
 	
 	public void accelerationKeyPressed(int slot) {
-		accelerationCommands[slot].execute();
-		undoCommand = accelerationCommands[slot];
+		if(accelerationCommands[slot] != null)
+		{
+			accelerationCommands[slot].execute();
+			undoCommand = accelerationCommands[slot];
+		}
+		
 	}
 	
 	public void decelerationKeyPressed(int slot) {
-		decelerationCommands[slot].execute();
-		undoCommand = decelerationCommands[slot];
+		if(decelerationCommands[slot] != null) 
+		{
+			decelerationCommands[slot].execute();
+			undoCommand = decelerationCommands[slot];
+		}
+		
 	}
 	
 	public void undoKeyPressed() {
