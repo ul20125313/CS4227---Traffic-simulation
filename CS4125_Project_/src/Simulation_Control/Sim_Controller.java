@@ -193,14 +193,14 @@ public class Sim_Controller extends Thread_source{
 		DriverTemperJudge = (int)(Math.random()*2);
 		if(DriverTemperJudge == 0) {
 			Driver Drive1 = d_fac.createDriver(DriverFactory.DriverTemper.NORMAL,
-					new Vehicle(3, this.Firstcar_loc, this.lanes.get(0), v8EngineCar),"J.J.", "Normal", 8);
+					new Vehicle(3, this.Firstcar_loc, this.lanes.get(0), v8EngineCar),"J.J.", "Normal", 1);
 			
 			this.drivers.add(Drive1);
 			
 		}
 		else if(DriverTemperJudge == 1) {
 			Driver Drive1 = d_fac.createDriver(DriverFactory.DriverTemper.IRRITABLE, 
-					new Vehicle(3, this.Firstcar_loc, this.lanes.get(0), v8EngineCar), "J.J.", "Irritable", 8);
+					new Vehicle(3, this.Firstcar_loc, this.lanes.get(0), v8EngineCar), "J.J.", "Irritable", 1);
 			
 			this.drivers.add(Drive1);
 			
