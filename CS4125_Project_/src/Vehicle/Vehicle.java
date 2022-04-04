@@ -45,6 +45,13 @@ public class Vehicle {
 	{
 		this.angular_speed = 0;
 	}
+	
+	
+	public Vehicle(Point xy)
+	{
+		this.position = xy;
+	}
+	
 
 
 	public Vehicle(double angle, Point xy, Lane track, VehicleEngineDecorator veEngineDec) {//constructor function

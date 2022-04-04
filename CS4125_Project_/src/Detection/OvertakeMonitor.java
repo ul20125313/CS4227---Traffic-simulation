@@ -1,4 +1,4 @@
-package CollisionDetection;
+package Detection;
 
 import Driver.Driver;
 import Simulation_Control.Sim_Controller;

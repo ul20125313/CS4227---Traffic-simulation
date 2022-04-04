@@ -2,7 +2,7 @@ package Iterator;
 
 import java.util.ArrayList;
 
-import CollisionDetection.Monitor;
+import Detection.Monitor;
 
 public class MonitorRepository implements Container{
 	

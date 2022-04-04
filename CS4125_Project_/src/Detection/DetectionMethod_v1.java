@@ -1,4 +1,4 @@
-package CollisionDetection;
+package Detection;
 
 import java.util.ArrayList;
 

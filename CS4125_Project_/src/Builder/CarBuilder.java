@@ -1,6 +1,7 @@
 package Builder;
 
-public class CarBuilder {
+public class CarBuilder 
+{
 	private Car c;
 	public void buildCar()
 	{

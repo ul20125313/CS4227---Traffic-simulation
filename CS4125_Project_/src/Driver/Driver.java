@@ -1,5 +1,5 @@
 package Driver;
-import CollisionDetection.CollisionMonitor;
+import Detection.CollisionMonitor;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
 

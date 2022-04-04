@@ -1,6 +1,6 @@
 package Driver;
 
-import CollisionDetection.CollisionMonitor;
+import Detection.CollisionMonitor;
 import Strategy.*;
 import Thread.Threadprocess;
 import Vehicle.Vehicle;
